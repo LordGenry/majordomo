@@ -18,7 +18,7 @@ class shoutbox extends module {
 *
 * @access private
 */
-function shoutbox() {
+function __construct() {
   $this->name="shoutbox";
   $this->title="<#LANG_MODULE_SHOUTBOX#>";
   $this->module_category="<#LANG_SECTION_SYSTEM#>";
@@ -218,7 +218,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS shouts');
+   SQLDropTable('shouts');
   parent::uninstall();
  }
 /**
@@ -239,6 +239,7 @@ shouts - Shoutbox
  shouts: MESSAGE varchar(255) NOT NULL DEFAULT ''
  shouts: IMPORTANCE int(10) NOT NULL DEFAULT '0'
  shouts: ADDED datetime
+ shouts: SOURCE varchar(255) NOT NULL DEFAULT ''
 EOD;
   parent::dbInstall($data);
  }

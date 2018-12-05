@@ -11,7 +11,7 @@
 class control_access extends module {
  var $id;
 // --------------------------------------------------------------------
- function control_access() {
+ function __construct() {
   // setting module name
   $this->name="control_access";
   $this->title="Control Access";
@@ -59,23 +59,14 @@ function getParams() {
         if(function_exists('ldap_connect') && is_file(ROOT.'modules/ldap_users/installed')) {
                 $out['LDAP_ON']=1;
         }
-// LDAP inicial
-
-        if (file_exists(DIR_MODULES.'userlog/userlog.class.php')) {
-         include_once(DIR_MODULES.'userlog/userlog.class.php');
-         $this->userlog=new userlog();
-        }
-
-
   if ($this->mode=='logoff') {
    UnSet($session->data['AUTHORIZED']);
    UnSet($session->data['USER_NAME']);
    UnSet($session->data['USERNAME']);
+   UnSet($session->data['SITE_USERNAME']);
+   UnSet($session->data['SITE_USER_ID']);
    Unset($session->data["cp_requested_url"]);
-   if (isset($this->userlog)) {
-    $this->userlog->newEntry('Logged Off');
-   }
-   $this->owner->redirect("?");
+   $this->redirect("/");
   }
 
   if ($this->action=="enter") {
@@ -112,9 +103,7 @@ function getParams() {
      $session->data['USER_LEVEL']=$user['PRIVATE'];
      $session->data['USER_ID']=$user['ID'];
 
-     if (isset($this->userlog)) {
-      $this->userlog->newEntry('Logged In');
-     }
+     
 
      if (!$session->data["cp_requested_url"]) {
       if (file_exists(DIR_MODULES.'dashboard/dashboard.class.php')) {
@@ -149,43 +138,51 @@ function getParams() {
     }
 
 
-    $modules=SQLSelect("SELECT * FROM project_modules WHERE HIDDEN='0' ORDER BY CATEGORY, NAME");
-    for($i=0;$i<count($modules);$i++) {
-     if (
-      (preg_match("/,".$modules[$i]['NAME'].",/i", @$user["ACCESS"])) ||
-      (preg_match("/,".$modules[$i]['NAME']."$/i", @$user["ACCESS"])) ||
-      (preg_match("/^".$modules[$i]['NAME'].",/i", @$user["ACCESS"])) ||
-      (preg_match("/^".$modules[$i]['NAME']."$/i", @$user["ACCESS"])) ||
-      0
-     )
-     {
-      $new[]=$modules[$i];
-     }
-    }
+    $modules    = SQLSelect("SELECT * FROM project_modules WHERE HIDDEN='0' ORDER BY CATEGORY, NAME");
+    $modulesCnt = count($modules);
+
+    for ($i = 0; $i < $modulesCnt; $i++)
+    {
+      if (
+            (preg_match("/,".$modules[$i]['NAME'].",/i", @$user["ACCESS"])) ||
+            (preg_match("/,".$modules[$i]['NAME']."$/i", @$user["ACCESS"])) ||
+            (preg_match("/^".$modules[$i]['NAME'].",/i", @$user["ACCESS"])) ||
+            (preg_match("/^".$modules[$i]['NAME']."$/i", @$user["ACCESS"])) ||
+            0
+         )
+      {
+         $new[] = $modules[$i];
+      }
+   }
 
 
-   $on_row=0;
+   $on_row = 0;
+   $newCnt = count($new);
+   
+   for ($i = 0; $i < $newCnt; $i++)
+   {
+      if ($new[$i]['CATEGORY'] != $new_category)
+      {
+         $new[$i]['NEWCATEGORY']=1;
+         $new_category=$new[$i]['CATEGORY'];
+         $on_row=0;
+      }
 
-   for($i=0;$i<count($new);$i++) {
+      $on_row++;
 
-    if ($new[$i]['CATEGORY']!=$new_category) {
-     $new[$i]['NEWCATEGORY']=1;
-     $new_category=$new[$i]['CATEGORY'];
-     $on_row=0;
-    }
+      if ($on_row % 6 == 0 && $on_row >= 6)
+      {
+         $new[$i]['NEWROW']=1;
+      }
 
-    $on_row++;
-
-    if ($on_row % 6 == 0 && $on_row>=6) {
-     $new[$i]['NEWROW']=1;
-    }
-
-    if (file_exists(ROOT.'img/admin/icons/ico_'.$new[$i]['NAME'].'.gif')) {
-     $new[$i]['ICON']=ROOTHTML.'img/admin/icons/ico_'.$new[$i]['NAME'].'.gif';
-    } else {
-     $new[$i]['ICON']=ROOTHTML.'img/admin/icons/ico_default.gif';
-    }
-
+      if (file_exists(ROOT.'img/admin/icons/ico_'.$new[$i]['NAME'].'.gif'))
+      {
+         $new[$i]['ICON']=ROOTHTML.'img/admin/icons/ico_'.$new[$i]['NAME'].'.gif';
+      }
+      else
+      {
+         $new[$i]['ICON']=ROOTHTML.'img/admin/icons/ico_default.gif';
+      }
    }
 
    $out["MODULES"]=$new;
@@ -211,8 +208,7 @@ function getParams() {
    UnSet($session->data['AUTHORIZED']);
    UnSet($session->data['USER_NAME']);
    UnSet($session->data['USERNAME']);
-   $this->owner->redirect("?");
-
+   $this->redirect("/");
   } elseif ($this->action=="admin") {
    global $mode;
    global $mode2;
@@ -282,7 +278,8 @@ function getParams() {
     }
 
     $modules=SQLSelect("SELECT * FROM project_modules");
-    for($i=0;$i<count($modules);$i++) {
+    $modulesCnt = count($modules);
+    for($i=0;$i<$modulesCnt;$i++) {
      if (
       (preg_match("/,".$modules[$i]['NAME'].",/i", @$user["ACCESS"])) ||
       (preg_match("/,".$modules[$i]['NAME']."$/i", @$user["ACCESS"])) ||
@@ -316,37 +313,33 @@ function getParams() {
  }
 
 // --------------------------------------------------------------------
- function checkAccess($action="", $log=0) {
-  global $session;
+   function checkAccess($action = "", $log = 0)
+   {
 
-  if ($session->data['USER_ID']==1) {
-   return 1;
-  }
+      if (defined('NO_DATABASE_CONNECTION')) {
+       return 1;
+      }
+      global $session;
 
-  $user=SQLSelectOne("SELECT ID FROM admin_users WHERE LOGIN='".$session->data['USER_NAME']."'");
-  if (!$user['ID']) {
-     UnSet($session->data['AUTHORIZED']);
-     UnSet($session->data['USER_NAME']);
-     $this->redirect("?");
-  }
+      if ($session->data['USER_ID'] == 1) 
+         return 1;
+  
+      $user = SQLSelectOne("SELECT ID FROM admin_users WHERE LOGIN='".$session->data['USER_NAME']."'");
+      if (!$user['ID'])
+      {
+         UnSet($session->data['AUTHORIZED']);
+         UnSet($session->data['USER_NAME']);
+         $this->redirect("?");
+      }
 
-
-  if ($action!="") {
-   $user=SQLSelectOne("SELECT ID FROM admin_users WHERE LOGIN='".$session->data['USER_NAME']."' AND (ACCESS LIKE '$action' OR ACCESS LIKE '$action,%' OR ACCESS LIKE '%,$action' OR ACCESS LIKE '%,$action,%')");
-  }
-  if (IsSet($user['ID'])) {
-
-   if ($log && $action!='') {
-    if (!isset($this->userlog) && file_exists(DIR_MODULES.'userlog/userlog.class.php')) {
-     include_once(DIR_MODULES.'userlog/userlog.class.php');
-     $this->userlog=new userlog();
-     $this->userlog->newEntry('Working with: '.$action, 1);
-    }
+      if ($action != "") 
+         $user=SQLSelectOne("SELECT ID FROM admin_users WHERE LOGIN='".$session->data['USER_NAME']."' AND (ACCESS LIKE '$action' OR ACCESS LIKE '$action,%' OR ACCESS LIKE '%,$action' OR ACCESS LIKE '%,$action,%')");
+    
+      if (isset($user['ID']))
+         return 1;
+  
+      return 0;
    }
-   return 1;
-  }
-  else return 0;
- }
 
 // --------------------------------------------------------------------
  function dbInstall($data) {

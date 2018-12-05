@@ -18,7 +18,7 @@ class shoutrooms extends module {
 *
 * @access private
 */
-function shoutrooms() {
+function __construct() {
   $this->name="shoutrooms";
   $this->title="<#LANG_MODULE_SHOUTROOMS#>";
   $this->module_category="<#LANG_SECTION_SYSTEM#>";
@@ -31,7 +31,7 @@ function shoutrooms() {
 *
 * @access public
 */
-function saveParams() {
+function saveParams($data = 0) {
  $p=array();
  if (IsSet($this->id)) {
   $p["id"]=$this->id;
@@ -187,7 +187,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS shoutrooms');
+   SQLDropTable('shoutrooms');
   parent::uninstall();
  }
 /**

@@ -1,0 +1,164 @@
+
+<!-- table devices search -->
+
+<form class="form-inline" name="frmFilter">
+
+ <div class="form-group">
+  <a href="?view_mode=edit_devices" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> <#LANG_ADD#></a>
+  [#if ENABLE_HOMEBRIDGE="1"#]
+  <a href="?mode=homebridgesync" class="btn btn-default">HomeBridge Sync</a>
+  [#endif#]
+  <!--#
+  <a href="?view_mode=render_structure" class="btn btn-default"> <#LANG_DEVICES_UPDATE_CLASSSES#></a>
+  #-->
+
+  </div>
+
+ <div class="form-group">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <#LANG_SEARCH#>:
+  </div>
+
+ <div class="form-group">
+  <select name="type" class="form-control" onchange="this.form.submit();">
+   <option value=""><#LANG_TYPE#> (<#LANG_TOTAL#>: [#TOTAL#])</option>
+   [#begin TYPES#]
+   <option value="[#NAME#]"[#if NAME="<#TYPE#>"#] selected[#endif#]>[#TITLE#] ([#TOTAL#])</option>
+   [#end TYPES#]
+  </select>
+
+ </div>
+
+ <div class="form-group ">
+  <select name="location_id" class="form-control" onchange="this.form.submit();">
+   <option value=""><#LANG_LOCATION#>
+    [#begin LOCATIONS#]<option value="[#ID#]"[#if ID="<#LOCATION_ID#>"#] selected[#endif#]>[#TITLE#] ([#TOTAL#])
+   [#end LOCATIONS#]
+   <option value="manage_locations">[ <#LANG_ADD#> / <#LANG_EDIT#> ]</option>
+  </select>
+ </div>
+
+ <div class="form-group">
+  <select name="group_name" class="form-control"  onchange="this.form.submit();">
+   <option value=""><#LANG_GROUPS#></option>
+   [#begin GROUPS#]
+   <option value="[#SYS_NAME#]"[#if SYS_NAME="<#GROUP_NAME#>"#] selected[#endif#]>[#TITLE#]</option>
+   [#end GROUPS#]
+   <option value="manage_groups">[ <#LANG_ADD#> / <#LANG_EDIT#> ]</option>
+  </select>
+ </div>
+
+</form>&nbsp;
+
+<!-- results -->
+[#if RESULT#]
+
+<!-- search results (list) -->
+
+<script type="text/javascript">
+ var httpRefreshTimer = 0;
+ var subscribedWebSockets=0;
+ var subscribedWebSocketsTimer;
+ var requestSent = Math.round(+new Date()/1000);
+ function subscribeToDevices() {
+  console.log('Sending devices subscription request...');
+  var payload;
+  payload = new Object();
+  payload.action = 'Subscribe';
+  payload.data = new Object();
+  payload.data.TYPE='devices';
+  payload.data.DEVICE_ID='0';
+  wsSocket.send(JSON.stringify(payload));
+  subscribedWebSocketsTimer=setTimeout('subscribeToDevices();', 3000);
+  return false;
+ }
+
+ $.subscribe('wsConnected', function (_) {
+  clearTimeout(httpRefreshTimer);
+  subscribeToDevices();
+ });
+
+ $.subscribe('wsData', function (_, response) {
+  if (response.action=='subscribed') {
+   console.log('Subscription to devices confirmed.');
+   clearTimeout(subscribedWebSocketsTimer);
+   subscribedWebSockets=1;
+  }
+  if (response.action=='devices') {
+   var obj=jQuery.parseJSON(response.data);
+   if (typeof obj.DATA !='object') return false;
+   var objCnt = obj.DATA.length;
+   if (objCnt) {
+    for(var i=0;i<objCnt;i++) {
+     var device_id=obj.DATA[i].DEVICE_ID;
+     var html=obj.DATA[i].DATA;
+     $('.device'+device_id).html(html);
+    }
+   }
+  }
+ });
+
+ var trackedDevices = [];
+ $(function() {
+  ajaxManager.run();
+  [#begin RESULT#]
+  trackedDevices.push([#ID#]);
+  [#end RESULT#]
+ });
+
+  function httpRefreshDevices() {
+  clearTimeout(httpRefreshTimer);
+  var baseURL = "<#ROOTHTML#>ajax/devices.html?op=get_device&id=";
+  trackedDevices.forEach(function(item, index) {
+   var url = baseURL + item;
+   ajaxManager.addReq({
+    type: 'GET',
+    url: url,
+    success: function(data){
+     var obj=jQuery.parseJSON(data);
+     $('.device'+item).html(obj.HTML);
+    }
+   });
+  });
+  httpRefreshTimer = setTimeout('httpRefreshDevices()',3000);
+ }
+ httpRefreshTimer = setTimeout('httpRefreshDevices()',5000);
+
+</script>
+
+[#begin RESULT#]
+[#if NEW_LOCATION#]
+<div class="row">
+ <h3>[#LOCATION_TITLE#]</h3>
+</div>
+[#endif#]
+<div class="row">
+  <div class="col-md-4">
+  <b>
+   [#TITLE#]
+  </a></b><br/>
+  [#TYPE_TITLE#] [#LINKED_OBJECT#][#if LOCATION_TITLE!=""#], [#LOCATION_TITLE#][#endif LOCATION_TITLE#]
+  [#if FAVORITE="1"#]<i class="glyphicon glyphicon-star"></i>[#endif#]
+ </div>
+ <div class="col-md-5"><div class="device[#ID#]">[#HTML#]</div></div>
+ <div class="col-md-3" nowrap>
+  [#if "<#ACTION#>"=="admin"#]
+   <a href="?view_mode=edit_devices&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+   <a href="?view_mode=edit_devices&id=[#ID#]&tab=settings" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-wrench"></i></a>
+   <a href="?view_mode=edit_devices&id=[#ID#]&tab=links" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-link"></i>[#if LINKED!=""#] ([#LINKED#])[#endif#]</a>
+   <a href="?view_mode=edit_devices&id=[#ID#]&tab=logic" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-flash"></i></a>
+    <a href="?view_mode=delete_devices&id=[#ID#]&location_id=<#LOCATION_ID#>&type=<#TYPE#>&group_name=<#GROUP_NAME#>" onClick="return confirm('Are you sure? Please confirm.')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+  [#endif ACTION#]
+ </div>
+</div>
+[#end RESULT#]
+<!-- / search results (list) -->
+
+<!-- / paging -->
+[#else RESULT#]
+<p>
+<font color="red"><#LANG_NO_RECORDS_FOUND#></font>
+</p>
+[#endif RESULT#]
+<!-- / results -->
+

@@ -18,7 +18,7 @@ class jobs extends module {
 *
 * @access private
 */
-function jobs() {
+function __construct() {
   $this->name="jobs";
   $this->title="<#LANG_MODULE_JOBS#>";
   $this->module_category="<#LANG_SECTION_SYSTEM#>";
@@ -31,7 +31,7 @@ function jobs() {
 *
 * @access public
 */
-function saveParams() {
+function saveParams($data=0) {
  $p=array();
  if (IsSet($this->id)) {
   $p["id"]=$this->id;
@@ -203,6 +203,7 @@ function usual(&$out) {
 */
  function install($parent_name="") {
   parent::install($parent_name);
+  SQLExec("UPDATE project_modules SET HIDDEN=1 WHERE NAME LIKE '".$this->name."'");
  }
 /**
 * Uninstall
@@ -212,7 +213,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS jobs');
+   SQLDropTable('jobs');
   parent::uninstall();
  }
 /**
@@ -229,7 +230,7 @@ jobs - jobs
   $data = <<<EOD
  jobs: ID int(10) unsigned NOT NULL auto_increment
  jobs: TITLE varchar(255) NOT NULL DEFAULT ''
- jobs: COMMANDS text NOT NULL DEFAULT ''
+ jobs: COMMANDS text
  jobs: RUNTIME datetime
  jobs: EXPIRE datetime
  jobs: STARTED datetime

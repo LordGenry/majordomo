@@ -18,7 +18,7 @@ class history extends module {
 *
 * @access private
 */
-function history() {
+function __construct() {
   $this->name="history";
   $this->title="<#LANG_MODULE_OBJECTS_HISTORY#>";
   $this->module_category="<#LANG_SECTION_OBJECTS#>";
@@ -31,21 +31,21 @@ function history() {
 *
 * @access public
 */
-function saveParams() {
- $p=array();
+function saveParams($data=1) {
+ $data=array();
  if (IsSet($this->id)) {
-  $p["id"]=$this->id;
+  $data["id"]=$this->id;
  }
  if (IsSet($this->view_mode)) {
-  $p["view_mode"]=$this->view_mode;
+  $data["view_mode"]=$this->view_mode;
  }
  if (IsSet($this->edit_mode)) {
-  $p["edit_mode"]=$this->edit_mode;
+  $data["edit_mode"]=$this->edit_mode;
  }
  if (IsSet($this->tab)) {
-  $p["tab"]=$this->tab;
+  $data["tab"]=$this->tab;
  }
- return parent::saveParams($p);
+ return parent::saveParams($data);
 }
 /**
 * getParams
@@ -187,6 +187,7 @@ function usual(&$out) {
 */
  function install($parent_name="") {
   parent::install($parent_name);
+  SQLExec("UPDATE project_modules SET HIDDEN=1 WHERE NAME LIKE 'history'");
  }
 /**
 * Uninstall
@@ -196,7 +197,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS history');
+   SQLDropTable('history');
   parent::uninstall();
  }
 /**

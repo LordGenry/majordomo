@@ -1,27 +1,59 @@
 <!--#
  @version 0.4 (auto-set)
 #-->
-[#if OK#]<font color="green"><#LANG_DATA_SAVED#></font>[#endif OK#]
 <br>&nbsp;
 
-<table border="0" cellpadding="3">
- <form action="?" method="post">
+[#if OK#]
+    <div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+[#if ERR#]
+  <div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
+[#endif ERR#]
+
+
+<table border="0" class="table table-bordered">
  [#begin PROPERTIES#]
  <tr>
-  <td valign="top">[#if CLASS_ID!="0"#]<b>[#endif#]<#TITLE#>.[#TITLE#]</b>
+  <td valign="top" width="30%">[#if CLASS_ID!="0"#]<b>[#endif#]<#TITLE#>.[#TITLE#]</b>
   [#if CLASS_ID!="0"#]
   [#if KEEP_HISTORY!="0"#]
   (<a href="#" onClick="return openModalTWindow('propHistory<#TITLE#>.[#TITLE#]', '<#TITLE#>.[#TITLE#]', '/pChart/?p=<#TITLE#>.[#TITLE#]&op=log&type=7d', 600, 600)">H</a>)
   [#endif#]
   [#endif#]
+
+  [#if DESCRIPTION!=""#]<br/><i>[#DESCRIPTION#]</i>[#endif#]
+
   </td>
-  <td valign="top">=</td>
-  <td valign="top">
-  <textarea name="value[#ID#]" rows=2 cols="90" class="span5">[#VALUE#]</textarea>
+  <td valign="top" width="70%">
+   <div id="prop[#ID#]_current" onClick="$('#prop[#ID#]_current').hide();$('#prop[#ID#]_edit').show();">
+    [#if DATA_TYPE="5"#]
+    [#if VALUE!=""#]
+     <img src="<#ROOTHTML#>cms/images/[#VALUE#]" height="200"><br/>
+     <a href="<#ROOTHTML#>cms/images/[#VALUE#]" target="_blank">[full size]</a>
+     [#endif#]
+    [#endif#]
+    [#if DATA_TYPE="0"#]<pre>[#VALUE#][#if SOURCE!=""#] (src: [#SOURCE#])[#endif#]</pre>[#endif#]
+   </div>
+
+   <div id="prop[#ID#]_edit" style="display:none">
+ <form action="?" method="post">
+ <textarea name="value[#ID#]" rows=2 cols="50" class="span5">[#VALUE_HTML#]</textarea>
+ <br/>
+ <input type="submit" name="submit" value="<#LANG_UPDATE#>" class="btn btn-primary">
+ <a href="#" class="btn btn-default" onclick="$('#prop[#ID#]_edit').hide();$('#prop[#ID#]_current').show();return false;"><#LANG_CANCEL#></a>
+ <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+ <input type="hidden" name="id" value="<#ID#>">
+ <input type="hidden" name="tab" value="<#TAB#>">
+ <input type="hidden" name="mode" value="update">
+ </form>
+
+   </div>
+
+  [#if LINKED_MODULES!=""#]<br>(linked to: [#LINKED_MODULES#])[#endif#]
   </td>
   <td valign="top">
         [#if CLASS_ID="0"#]
-   [ <a href="?view_mode=<#VIEW_MODE#>&id=<#ID#>&tab=<#TAB#>&delete_prop=[#ID#]" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')">X</a> ]
+   <a href="?view_mode=<#VIEW_MODE#>&id=<#ID#>&tab=<#TAB#>&delete_prop=[#ID#]" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')" title="<#LANG_DELETE#>" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-remove"></i></a>
         [#else#]
         &nbsp;
         [#endif#]
@@ -29,28 +61,25 @@
  </tr>
  [#end PROPERTIES#]
  <tr>
-  <td valign="top" colspan="4"><hr><br>
+  <td valign="top" colspan="4">
   <#LANG_ADD_NEW_PROPERTY#>:
   </td>
  </tr>
  <tr>
-  <td valign="top"><input type="text" name="new_property"></td>
-  <td valign="top">=</td>
-  <td valign="top"><input type="text" name="new_value"></td>
-  <td valign="top">&nbsp;</td>
- </tr>
- <tr>
-  <td valign="top" colspan="4"><hr>
-  </td>
- </tr>
- <tr>
   <td valign="top" colspan="4">
-   <input type="submit" name="submit" value="<#LANG_UPDATE#>">
-  </td>
- </tr>
+ <form action="?" method="post">
+ <#LANG_PROPERTY#>:<br/>
+ <input type="text" name="new_property"><br/>
+ <#LANG_VALUE#>:<br/>
+ <textarea name="new_value" rows=2 cols="50" class="span5">[#VALUE#]</textarea>
+ <br/>
+ <input type="submit" name="submit" value="<#LANG_ADD#>" class="btn btn-primary">
  <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
  <input type="hidden" name="id" value="<#ID#>">
  <input type="hidden" name="tab" value="<#TAB#>">
  <input type="hidden" name="mode" value="update">
  </form>
+
+  </td>
+ </tr>
 </table>

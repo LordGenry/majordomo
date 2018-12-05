@@ -31,11 +31,31 @@
     $ok=0;
    }
 
+   if ($ok && $rec['CLASS_ID']) {
+    include_once(DIR_MODULES.'classes/classes.class.php');
+    $cl=new classes();
+    $parent_properties=$cl->getParentProperties($rec['CLASS_ID']);
+    $seen=array();
+    foreach($parent_properties as $k=>$v) {
+     $seen[strtoupper($v['TITLE'])]=1;
+    }
+    if (IsSet($seen[strtoupper($rec['TITLE'])])) {
+     $ok=0;
+     $out['ERR_TITLE']=1;
+    }
+   }
+
    global $keep_history;
    $rec['KEEP_HISTORY']=(int)$keep_history;
 
    global $onchange;
    $rec['ONCHANGE']=trim($onchange);
+
+   global $data_key;
+   $rec['DATA_KEY']=(int)$data_key;
+
+   global $data_type;
+   $rec['DATA_TYPE']=(int)$data_type;
 
   //updating 'Description' (text)
    global $description;
@@ -56,6 +76,25 @@
      $rec['ID']=SQLInsert($table_name, $rec); // adding new record
     }
     $out['OK']=1;
+
+    if ($rec['CLASS_ID']) {
+     $objects=getObjectsByClass($rec['CLASS_ID']);
+     $total=count($objects);
+     $replaces=array();
+     for($i=0;$i<$total;$i++) {
+      $property=SQLSelectOne("SELECT ID FROM properties WHERE TITLE LIKE '".DBSafe($rec['TITLE'])."' AND OBJECT_ID=".(int)$objects[$i]['ID']." AND CLASS_ID!=".(int)$rec['CLASS_ID']);
+      if ($property['ID']) {
+       $replaces[]=$property['ID'];
+      }
+     }
+     $total=count($replaces);
+     for($i=0;$i<$total;$i++) {
+      SQLExec("UPDATE pvalues SET PROPERTY_ID=".(int)$rec['ID']." WHERE PROPERTY_ID=".(int)$replaces[$i]);
+      SQLExec("DELETE FROM properties WHERE ID=".(int)$replaces[$i]);
+     }
+
+    }
+
    } else {
     $out['ERR']=1;
    }
@@ -69,6 +108,15 @@
   }
   outHash($rec, $out);
 
+  if ($rec['CLASS_ID']) {
+   //echo "zz";exit;
+    include_once(DIR_MODULES.'objects/objects.class.php');
+    $obj=new objects();
+    $methods=$obj->getParentMethods($rec['CLASS_ID'], '', 1);
+    $out['METHODS']=$methods;
+
+  }
+
   global $overwrite;
   if ($overwrite) {
    $tmp=SQLSelectOne("SELECT * FROM properties WHERE ID='".(int)$overwrite."'");
@@ -77,5 +125,7 @@
     $out[$k]=htmlspecialchars($v);
    }
   }
+
+
 
 ?>

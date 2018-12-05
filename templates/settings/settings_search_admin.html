@@ -2,10 +2,17 @@
  @version 0.2 (auto-set)
 #-->
 [#if FILTER_SET=""#]
+
+
+<ul class="nav nav-tabs">
 [#begin SECTIONS#]
-[#if FILTER!=""#]|[#endif#]
-<a href="?filter_name=[#FILTER#]">[#if SELECTED="1"#]<b>[#endif#][#TITLE#]</b></a>
+[#if FILTER!=""#][#endif#]
+<li [#if SELECTED="1"#]class="active"[#endif#]><a href="?filter_name=[#FILTER#]">[#TITLE#]</a></li>
 [#end SECTIONS#]
+</ul>
+
+
+
 <br/>&nbsp;
 [#endif FILTER_SET#]
 
@@ -40,12 +47,52 @@ $(function() {
 [#if HR="1"#]
 <hr>
 [#endif#]
-<div class="control-group">
-        <label class="control-label">[#TITLE#]</label>
+<div class="form-group">
+        <label class="control-label">[#TITLE#]:
+                <#LANG_HCB#>[#HINT_NAME#]<#LANG_HCE#>
+        </label>
         <div class="controls">
                 [#if TYPE="text"#]
-                <input type="text" name="value_[#ID#]" value="[#VALUE#]" size=50>
+                [#if NAME=="SITE_TIMEZONE" || NAME=="SITE_LANGUAGE" || NAME=="THEME"#]
+                [#VALUE#]
+                <a href="<#ROOTHTML#>popup/first_start.html" target=_blank><#LANG_UPDATE#></a>
+                <input type="hidden" class="form-control" name="value_[#ID#]" value="[#VALUE#]">
+                [#else#]
+                <input type="text" class="form-control" name="value_[#ID#]" value="[#VALUE#]" size=50>
+                [#endif#]
                 [#endif TYPE#]
+
+                [#if TYPE="json"#]
+                <pre>[#VALUE#]</pre>
+                [#if OPTIONS#]
+                <table class="table">
+                        <thead>
+                        <tr>
+                                <th><#LANG_TITLE#></th>
+                                <th><#LANG_PRIORITY#></th>
+                                <!--#
+                                <th>Filter</th>
+                                #-->
+
+                        </tr>
+                        </thead>
+                        [#begin OPTIONS#]
+                        <tr>
+                                <td>[#OPTION_TITLE#]</td>
+                                <td><input type="text" name="[#OPTION_TITLE#]_<#RESULT.ID#>_priority" value="[#PRIORITY#]"></td>
+                                <!--#
+                                <td><input type="text" name="[#OPTION_TITLE#]_<#RESULT.ID#>_filter" value="[#FILTER#]"></td>
+                                #-->
+                        </tr>
+                        [#end OPTIONS#]
+                </table>
+                [#endif <OPTIONS></OPTIONS>#]
+                [#endif TYPE#]
+
+                [#if TYPE="path"#]
+                <input type="text"   class="form-control" name="value_[#ID#]" value="[#VALUE#]" id="value_[#ID#]" size=50 onclick="openFileBrowser('value_[#ID#]');">
+                [#endif TYPE#]
+
 
                 [#if TYPE="onoff"#]
                 <label class="radio"><input type="radio" name="value_[#ID#]" value="1"[#if VALUE="1"#] checked[#endif#]>On</label>
@@ -57,12 +104,19 @@ $(function() {
                 <label class="radio"><input type="radio" name="value_[#ID#]" value="0"[#if VALUE!="1"#] checked[#endif#]>No</label>
                 [#endif TYPE#]
 
+                [#if TYPE="select"#]
+                [#begin OPTIONS#]
+                <label class="radio"><input type="radio" name="value_<#RESULT.ID#>" value="[#OPTION_VALUE#]"[#if OPTION_VALUE="<#RESULT.VALUE#>"#] checked[#endif#]>[#OPTION_TITLE#]</label>
+                [#end OPTIONS#]
+                [#endif TYPE#]
+
+
                 [#if TYPE="enable"#]
                 <label class="radio"><input type="radio" name="value_[#ID#]" value="1"[#if VALUE="1"#] checked[#endif#]>Enable</label>
                 <label class="radio"><input type="radio" name="value_[#ID#]" value="0"[#if VALUE!="1"#] checked[#endif#]>Disable</label>
                 [#endif TYPE#]
                 <p class="help-block">
-                [#if TYPE="text"#]
+                [#if TYPE=="text" || TYPE=="path"#]
                 [#if DEFAULTVALUE!=""#]
                 <#LANG_DEFAULT_VALUE#>: [#DEFAULTVALUE#]
                 [#endif#]
@@ -84,11 +138,12 @@ $(function() {
                 [#if URL_TITLE!=""#]<p class="help-block"><a href="[#URL#]" target=_blank>[#URL_TITLE#]</a></p>[#endif#]
                 [#if NOTES!=""#]
                 <p class="help-block edit-notes" data-id="[#ID#]"><acronym title="Click to edit">[#NOTES#]</acronym></p>
-                <div id="notes_[#ID#]" style="display:none;">
+                <div id="notes_[#ID#]" style="display:none;" >
                 <p><i>Edit configuration help tip</i></p>
                 <textarea name="notes_[#ID#]" cols=45 rows=3 id="edit_notes_area_[#ID#]">[#NOTES#]</textarea>
-                [#endif#]
                 </div>
+                [#endif#]
+                
         </div>
 </div>
   <!--#
@@ -98,8 +153,8 @@ $(function() {
 [#end RESULT#]
 
 <div class="form-actions">
-        <button class="btn" type="submit" name="submit"><i class="icon-ok"></i> <#LANG_SUBMIT#></button>
-        <a class="btn" href="?mode=reset" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><#LANG_RESET_TO_DEFAULT#></a>
+        <button class="btn btn-default btn-primary" type="submit" name="submit"><i class="icon-ok"></i> <#LANG_SUBMIT#></button>
+        <a class="btn btn-default" href="?mode=reset" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><#LANG_RESET_TO_DEFAULT#></a>
         <input type="hidden" name="mode" value="update">
         <input type="hidden" name="filter_name" value="<#FILTER_NAME#>">
 </div>

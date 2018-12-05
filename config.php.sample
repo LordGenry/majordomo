@@ -7,25 +7,6 @@
 * @version 1.1
 */
 
-define('ENVIRONMENT', 'dev');
-
-switch (ENVIRONMENT) 
-{
-   case 'dev':
-      error_reporting(-1);
-      ini_set('display_errors', 1);
-      break;
-
-   case 'prod':
-      error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_STRICT);
-      ini_set('display_errors', 0);
-      break;
-
-   default:
-      header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-      exit('The application env is incorrect');
-}
-
 Define('DB_HOST', 'localhost');
 Define('DB_NAME', 'db_terminal');
 Define('DB_USER', 'root');
@@ -51,17 +32,12 @@ else
    Define('COMPUTER_NAME', 'mycomp');                       
 }
 
-if (isset($_ENV["S2G_SERVER_DOCROOT"]) && $_ENV["S2G_SERVER_DOCROOT"])
-{
-   Define('DOC_ROOT', $_ENV['S2G_SERVER_DOCROOT']);
-} 
-else 
-{
-   // Your htdocs location (should be detected automatically)
-   Define('DOC_ROOT', dirname(__FILE__));              
-}
+ Define('DOC_ROOT', dirname(__FILE__));              // Your htdocs location (should be detected automatically)
 
-Define('SERVER_ROOT', preg_replace('/[\/\\\\]\w+?$/', '', DOC_ROOT));
+ Define('SERVER_ROOT', '/var/www');
+ Define('PATH_TO_PHP', 'php');
+ Define('PATH_TO_MYSQLDUMP', "mysqldump");
+
  
 if (isset($_ENV["S2G_BASE_URL"]) && $_ENV["S2G_BASE_URL"])
 {
@@ -75,7 +51,7 @@ else
 
 Define('ROOT', DOC_ROOT."/");
 Define('ROOTHTML', "/");
-Define('PROJECT_DOMAIN', $_SERVER['SERVER_NAME']);
+Define('PROJECT_DOMAIN', isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : php_uname("n"));
 
 // 1-wire OWFS server
 //Define('ONEWIRE_SERVER', 'tcp://localhost:8234');    
@@ -89,4 +65,39 @@ Define('PROJECT_DOMAIN', $_SERVER['SERVER_NAME']);
 /// (Optional)
 //Define('DROPBOX_SHOPPING_LIST', 'c:/data/dropbox/list.txt');  
 
-?>
+ $restart_threads=array(
+                       'cycle_execs.php', 
+                       'cycle_main.php', 
+                       'cycle_ping.php', 
+                       'cycle_scheduler.php', 
+                       'cycle_states.php', 
+                       'cycle_webvars.php');
+
+ //Define('USE_PROXY', '127.0.0.1:8888');               //PROXY SERVER DETAILS (optional)
+ //Define('USE_PROXY_AUTH', 'user:password');           //PROXY SERVER AUTH (optional)
+
+ //Define('HISTORY_NO_OPTIMIZE', 1);
+
+Define('GIT_URL', 'https://github.com/sergejey/majordomo/');
+Define('MASTER_UPDATE_URL', GIT_URL.'archive/master.tar.gz'); // master update URL (https://github.com/sergejey/majordomo/archive/alpha.tar.gz)
+
+$aditional_git_urls = array(
+   //'https://github.com/AKEB/majordomo/archive/alpha.tar.gz' => 'AKEB/alpha',
+   //'https://github.com/AKEB/majordomo/archive/master.tar.gz' => 'AKEB/master',
+);
+
+
+//Define('WAIT_FOR_MAIN_CYCLE', 1);
+//Define('TRACK_DATA_CHANGES', 1);                                   // TRACK EVENTS
+//Define('TRACK_DATA_CHANGES_IGNORE', 'cycle_, clockchime, uptime, WSClientsTotal'); // IGNORE
+
+Define('GETURL_WARNING_TIMEOUT',5);                   // TIMEOUT LIMIT FOR getURL function warning
+
+//Define('SEPARATE_HISTORY_STORAGE',1);                 // STORE HISTORY DATA IN DIFFERENT TABLES
+//Define('LOG_DIRECTORY', 'c:/temp');                 // PATH TO STORE LOGS
+//Define('LOG_MAX_SIZE', 2);                 // MAXIMUM LOG FILE SIZE, MB
+//Define('PATH_TO_FFMPEG','avconv');
+//Define('DISABLE_PANEL_ACCELERATION', 1);
+//Define('VERBOSE_LOG',1); // STORE SYSTEM ACTIVITY IN VERBOSE LOG
+//Define('VERBOSE_LOG_IGNORE','.checkstate, ThisComputer.uptime'); // IGNORE SOME DATA
+//Define('DISABLE_SIMPLE_DEVICES',1); // disables simple devices behavior

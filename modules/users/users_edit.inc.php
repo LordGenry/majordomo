@@ -38,6 +38,10 @@
    global $mobile;
    $rec['MOBILE']=$mobile;
 
+   global $color;
+   $rec['COLOR']=$color;
+
+
    global $is_admin;
    $rec['IS_ADMIN']=$is_admin;
 
@@ -72,6 +76,9 @@
      $rec['ID']=SQLInsert($table_name, $rec); // adding new record
     }
     $out['OK']=1;
+
+    $user_title=getUserObjectByTitle($rec['ID'],1);
+    
    } else {
     $out['ERR']=1;
    }

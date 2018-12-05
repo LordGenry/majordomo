@@ -5,17 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<link rel="stylesheet" href="<#ROOTHTML#>jquerymobile/jquery.mobile-1.4.0.min.css" />
-<script type="text/javascript" src="<#ROOTHTML#>jquerymobile/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<#ROOTHTML#>jquerymobile/custom-scripting.js"></script>               
-<script type="text/javascript" src="<#ROOTHTML#>jquerymobile/jquery.mobile-1.4.0.min.js"></script>
+
+ <script type="text/javascript" src="<#ROOTHTML#>3rdparty/jquery/jquery-3.3.1.min.js"></script>
+ <script type="text/javascript" src="<#ROOTHTML#>3rdparty/jquery/jquery-migrate-3.0.0.min.js"></script>
+
+ <link rel="stylesheet" href="<#ROOTHTML#>3rdparty/jquerymobile/jquery.mobile-1.4.5.min.css" />
+ <script type="text/javascript" src="<#ROOTHTML#>3rdparty/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="<#ROOTHTML#>3rdparty/jquerymobile/custom-scripting.js"></script>
+
+ <link href="<#ROOTHTML#>css/menu_custom.css" rel="stylesheet" type="text/css"/>
+ <link href="<#ROOTHTML#>css/devices.css" rel="stylesheet" type="text/css"/>
+
 <script type="text/javascript" src="<#ROOTHTML#>js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="<#ROOTHTML#>js/jquery.cookie.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="<#ROOTHTML#>3rdparty/fancybox/jquery.fancybox.min.css?v=3.3.5" media="screen" />
+ <script type="text/javascript" src="<#ROOTHTML#>3rdparty/fancybox/jquery.fancybox.min.js?v=3.3.5"></script>
 
 <title><#LANG_CONTROL_MENU#></title>
 <script language="javascript" src="<#ROOTHTML#>js/scripts.js"></script>
+
+[#inc websockets.html#]
 </head>
-<body>
-<div data-role="page" id="mainPage" [#if "<#SETTINGS_THEME#>"=="dark"#] data-theme="b"[#endif#]>
+[#if FROM_SCENE="1"#]
+<style>
+ .ui-field-contain {border-bottom:none}
+</style>
+[#endif#]
+<body[#if FROM_SCENE="1"#] style="background:none transparent;"[#endif#][#if "<#SETTINGS_THEME#>"=="dark"#] style="background-color:#252525"[#endif#]>
+<div data-role="page" id="mainPage" [#if "<#SETTINGS_THEME#>"=="dark"#] data-theme="b"[#endif#][#if FROM_SCENE="1"#] style="background:none transparent;"[#endif#]>
         [#module name="commands" action="" pda="1"#]
 </div>
 
@@ -27,38 +45,13 @@
  }
  function runCycleThroughWeb() {
   clearTimeout(cycleTimer);
-  AJAXRequest('/scripts/cycle_states.php?once=1', 'runCycleThroughWebReceived', '');
-  cycleTimer=window.setTimeout ('runCycleThroughWeb();', 30000);
+  AJAXRequest('<#ROOTHTML#>scripts/cycle_states.php?once=1', 'runCycleThroughWebReceived', '');
+  cycleTimer=window.setTimeout ('runCycleThroughWeb();', 5*60*1000);
   return false;
  }
  $(document).ready(function(){
    runCycleThroughWeb();
  });
 </script>
-
-<!--#
-<div id='sound'></div>
-<script language="javascript">
- var noteMP3Latest='';
- var noteMP3Timer;
- function getLatestNoteMenuReceived(id, data) {
-  if (noteMP3Latest!=data) {
-    document.getElementById("sound").innerHTML="<embed src='"+data+"' hidden=true autostart=true loop=false>";
-   noteMP3Latest=data;
-  }
- }
-
- function getLatestNoteMenu() {
-  clearTimeout(noteMP3Timer);
-  noteMP3Timer=window.setTimeout ('getLatestNoteMenu();', 5000);
-  AJAXRequest('/getlatestmp3.html', 'getLatestNoteMenuReceived', '');
-  return false;
- }
-
-
-
-</script>
-#-->
-
 </body>
 </html>

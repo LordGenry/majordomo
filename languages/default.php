@@ -1,893 +1,1324 @@
 <?php
 /**
-* Default language file
-*
-* @package MajorDoMo
-* @author Serge Dzheigalo <jey@tut.by> http://smartliving.ru/
-* @version 1.0
-*/
-
-
-$dictionary=array(
-
-/* general */
-'WIKI_URL'=>'http://majordomohome.com/',
-'WELCOME_GREETING'=>'Welcome!',
-'WELCOME_TEXT'=>'Thank you for using MajorDoMo -- an open-source home automation platform. <br/><br/>Read more about it and join our community: <a href="<#LANG_WIKI_URL#>" target=_blank>Web-site</a> | <a href="<#LANG_WIKI_URL#>forum/" target=_blank>Forum</a> | <a href="https://www.facebook.com/SmartLivingRu" target=_blank>Facebook page</a> <br/>&nbsp;<br/>&nbsp;<br/><small>P.S. You can customize or delete this page using <a href="/admin.php?pd=&md=panel&inst=&action=layouts">Control Panel</a> (login/password: admin / admin)</small>',
-'CONTROL_PANEL'=>'Control Panel',
-'TERMINAL'=>'Terminal',
-'USER'=>'User',
-'SELECT'=>'select',
-'CONTROL_MENU'=>'Control Menu',
-'YOU_ARE_HERE'=>'You are here',
-'FRONTEND'=>'Front End',
-'MY_ACCOUNT'=>'My Account',
-'LOGOFF'=>'Logoff',
-'MODULE_DESCRIPTION'=>'Module Description on the Web',
-
-'GENERAL_SENSORS'=>'Sensors',
-'GENERAL_OPERATIONAL_MODES'=>'Operational modes',
-'GENERAL_ENERGY_SAVING_MODE'=>'Energy saving mode',
-'GENERAL_SECURITY_MODE'=>'Security mode',
-'GENERAL_NOBODYS_HOME_MODE'=>'Nobody\'s home',
-'GENERAL_WE_HAVE_GUESTS_MODE'=>'We have guests',
-
-'GENERAL_CLIMATE'=>'Climate',
-'GENERAL_WEATHER_FORECAST'=>'Weather forecast',
-'GENERAL_TEMPERATURE_OUTSIDE'=>'Temperature outside',
-'GENERAL_GRAPHICS'=>'Graphics',
-
-'GENERAL_SECURITY_CAMERA'=>'Security camera',
-'GENERAL_EVENTS_LOG'=>'Events log',
-
-'GENERAL_SERVICE'=>'Service',
-
-'SECTION_OBJECTS'=>'Objects',
-'SECTION_APPLICATIONS'=>'Applications',
-'SECTION_DEVICES'=>'Devices',
-'SECTION_SETTINGS'=>'Settings',
-'SECTION_SYSTEM'=>'System',
-
-/* end general */
-
-/* module names */
-'APP_GPSTRACK'=>'GPS Tracker',
-'APP_PLAYER'=>'Player Control',
-'APP_MEDIA_BROWSER'=>'Media Library',
-'APP_PRODUCTS'=>'Products Inventory',
-'APP_TDWIKI'=>'TdWiKi Notepad',
-'APP_WEATHER'=>'Weather Informer',
-'APP_CALENDAR'=>'Calendar',
-'APP_READIT'=>'ReadIt',
-'APP_QUOTES'=>'Quotes',
-
-'MODULE_OBJECTS_HISTORY'=>'Objects History',
-'MODULE_BT_DEVICES'=>'Bluetooth Devices',
-'MODULE_CONTROL_MENU'=>'Control Menu',
-'MODULE_OBJECTS'=>'Objects',
-'MODULE_PINGHOSTS'=>'Hosts Online',
-'MODULE_SCRIPTS'=>'Scripts',
-'MODULE_USB_DEVICES'=>'USB Devices',
-'MODULE_WATCHFOLDERS'=>'Folders',
-'MODULE_LAYOUTS'=>'Home Pages',
-'MODULE_LOCATIONS'=>'Locations',
-'MODULE_RSS_CHANNELS'=>'RSS Channels',
-'MODULE_SETTINGS'=>'General Settings',
-'MODULE_TERMINALS'=>'Terminals',
-'MODULE_USERS'=>'Users',
-'MODULE_EVENTS'=>'Events',
-'MODULE_JOBS'=>'Scheduled Jobs',
-'MODULE_MASTER_LOGIN'=>'Panel Login',
-'MODULE_SAVERESTORE'=>'Backup/Upgrade',
-'MODULE_WEBVARS'=>'Web Variables',
+ * Default language file
+ *
+ * @package MajorDoMo
+ * @author Serge Dzheigalo <jey@tut.by> http://smartliving.ru/
+ * @version 1.0
+ */
+
+
+$dictionary = array(
+
+    /* general */
+    'WIKI_URL' => 'http://majordomohome.com/',
+    'KB_URL' => 'https://kb.smartliving.ru/',
+    'DEFAULT_COMPUTER_NAME' => 'Alice',
+    'WELCOME_GREETING' => 'Welcome!',
+    'WELCOME_TEXT' => 'Thank you for using MajorDoMo -- an open-source home automation platform. <br/><br/>Read more about it and join our community: <a href="<#LANG_WIKI_URL#>" target=_blank>Web-site</a> | <a href="<#LANG_WIKI_URL#>forum/" target=_blank>Forum</a> | <a href="https://www.facebook.com/SmartLivingRu" target=_blank>Facebook page</a> <br/>&nbsp;<br/>&nbsp;<br/><small>P.S. You can customize or delete this page using <a href="/admin.php?pd=&md=panel&inst=&action=layouts">Control Panel</a></small>',
+    'CONTROL_PANEL' => 'Control Panel',
+    'TERMINAL' => 'Terminal',
+    'USER' => 'User',
+    'SELECT' => 'select',
+    'CONTROL_MENU' => 'Control Menu',
+    'YOU_ARE_HERE' => 'You are here',
+    'FRONTEND' => 'Front End',
+    'MY_ACCOUNT' => 'My Account',
+    'LOGOFF' => 'Logoff',
+    'CONSOLE' => 'Console',
+    'CONSOLE_RETRY' => 'Retry',
+    'MODULE_DESCRIPTION' => 'Module Description on the Web',
+    'STILL_WORKING' => 'Loading data... Click',
+    'CLICK_HERE' => 'here',
+    'TAKES_TOO_LONG' => 'if it takes too long.',
+    'SUBMIT_DIAGNOSTIC' => 'Submit Diagnostic Details',
+
+
+    'GENERAL_SENSORS' => 'Sensors',
+    'GENERAL_OPERATIONAL_MODES' => 'Operational modes',
+    'GENERAL_ENERGY_SAVING_MODE' => 'Energy saving mode',
+    'GENERAL_SECURITY_MODE' => 'Security mode',
+    'GENERAL_NOBODYS_HOME_MODE' => 'Nobody\'s home',
+    'GENERAL_WE_HAVE_GUESTS_MODE' => 'We have guests',
+    'GENERAL_NIGHT_MODE' => 'Night mode',
+    'GENERAL_DARKNESS_MODE' => 'Darkness mode',
+
+    'GENERAL_CLIMATE' => 'Climate',
+    'GENERAL_WEATHER_FORECAST' => 'Weather forecast',
+    'GENERAL_TEMPERATURE_OUTSIDE' => 'Temperature outside',
+    'GENERAL_GRAPHICS' => 'Graphics',
+
+    'GENERAL_SECURITY_CAMERA' => 'Security camera',
+    'GENERAL_EVENTS_LOG' => 'Events log',
+
+    'GENERAL_SERVICE' => 'Service',
+
+    'GENERAL_GREEN' => 'Green',
+    'GENERAL_YELLOW' => 'Yellow',
+    'GENERAL_RED' => 'Red',
+    'GENERAL_CHANGED_TO' => 'changed to',
+    'GENERAL_RESTORED_TO' => 'restored to',
+    'GENERAL_SYSTEM_STATE' => 'System state',
+    'GENERAL_SECURITY_STATE' => 'Security state',
+    'GENERAL_COMMUNICATION_STATE' => 'Communication state',
+    'GENERAL_STOPPED' => 'stopped',
+    'GENERAL_CYCLE' => 'cycle',
+    'GENERAL_NO_INTERNET_ACCESS' => 'No Interet access',
+    'GENERAL_SETTING_UP_LIGHTS' => 'Setting lights',
+    'GENERAL_CONTROL' => 'Control',
+    'GENERAL_INSIDE' => 'Inside',
+    'GENERAL_OUTSIDE' => 'Outside',
+    'GENERAL_LIGHT' => 'Light',
+    'GENERAL_TURNOFF_EVERYTHING' => 'Turn off everything',
+    'GENERAL_DAYTIME' =>'Daytime',
+    'GENERAL_NIGHTTIME' =>'Nighttime',
+    'GENERAL_MESSAGES' =>'Messages',
+    'GENERAL_TOMORROW' =>'Tomorrow',
+    'GENERAL_MINMAX' => 'Min/Max',
+    'GENERAL_METERS_PER_SECOND' => 'm/s',
+    'GENERAL_CHART' => 'Chart',
+    'GENERAL_ROOM_BATHROOM' => 'Bathroom',
+    'GENERAL_ROOM_LIVINGROOM' => 'Livingroom',
+    'GENERAL_ROOM_HALL' => 'Hall',
+    'GENERAL_ROOM_KITCHEN' => 'Kitchen',
+    'GENERAL_ROOM_BEDROOM' => 'Bedroom',
+    'GENERAL_ROOM_TOILET' => 'Toilet',
+    'GENERAL_SYSTEM_SHUTDOWN_REBOOT' => 'System shutdown/reboot',
+    'GENERAL_SYSTEM_SHUTDOWN_WARNING' => 'Please wait for about 30 seconds after starting system shutdown before turning power off.',
+    'GENERAL_SYSTEM_SHUTDOWN' => 'Shutdown system',
+    'GENERAL_SYSTEM_REBOOT' => 'Reboot system',
+    'GENERAL_STARTING' => 'starting',
+    'GENERAL_ENDING' => 'ending',
+    'GENERAL_CLOCKCHIME' => 'Clock Chime',
+    'GENERAL_LANGUAGE_TIMEZONE' => 'Language/Timezone',
+    'GENERAL_ACTIVATED' => 'activated',
+    'GENERAL_DEACTIVATED' => 'deactivated',
+    'GENERAL_STARTING_REBOOT' => 'Doing reboot procedures.',
+    'GENERAL_STARTING_SHUTDOWN' => 'Doing shutdown procedures.',
+    'GENERAL_IP_ADDRESS' => 'IP address',
+    'GENERAL_SECURITY' => 'Security',
+    'GENERAL_RUNNING_OUT_SPACE' => 'Running out of available disk space',
+
+
+    'SECTION_OBJECTS' => 'Objects',
+    'SECTION_APPLICATIONS' => 'Applications',
+    'SECTION_DEVICES' => 'Devices',
+    'SECTION_SETTINGS' => 'Settings',
+    'SECTION_SYSTEM' => 'System',
+    'SECTION_PANEL' => 'Panel',
+
+    /* end general */
+
+    /* module names */
+    'APP_GPSTRACK' => 'GPS Tracker',
+    'APP_PLAYER' => 'Player Control',
+    'APP_MEDIA_BROWSER' => 'Media Library',
+    'APP_PRODUCTS' => 'Products Inventory',
+    'APP_TDWIKI' => 'Notepad',
+    'APP_WEATHER' => 'Weather Informer',
+    'APP_CALENDAR' => 'Calendar',
+    'APP_READIT' => 'ReadIt',
+    'APP_QUOTES' => 'Quotes',
+    'APP_ALARMCLOCK' => 'AlarmClock',
+    'APP_OPENWEATHER' => 'Weather from OpenWeatherMap',
+    'SYS_DATEFORMAT' => 'Date format',
+    'APP_YATRAFFIC' => 'Yandex.Traffic',
+    'APP_CHATBOX' => 'ChatBox',
+
+    'MODULE_OBJECTS_HISTORY' => 'Objects History',
+    'MODULE_BT_DEVICES' => 'Bluetooth Devices',
+    'MODULE_CONTROL_MENU' => 'Control Menu',
+    'MODULE_OBJECTS' => 'Objects',
+    'MODULE_PINGHOSTS' => 'Hosts Online',
+    'MODULE_SCRIPTS' => 'Scripts',
+    'MODULE_USB_DEVICES' => 'USB Devices',
+    'MODULE_WATCHFOLDERS' => 'Folders',
+    'MODULE_LAYOUTS' => 'Home Pages',
+    'MODULE_LOCATIONS' => 'Locations',
+    'MODULE_RSS_CHANNELS' => 'RSS Channels',
+    'MODULE_SETTINGS' => 'General Settings',
+    'MODULE_TERMINALS' => 'Terminals',
+    'MODULE_USERS' => 'Users',
+    'MODULE_EVENTS' => 'Events',
+    'MODULE_JOBS' => 'Scheduled Jobs',
+    'MODULE_MASTER_LOGIN' => 'Panel Login',
+    'MODULE_SAVERESTORE' => 'Check updates',
+    'MODULE_WEBVARS' => 'Web Variables',
+
+    'MODULE_DASHBOARD' => 'Dashboard',
+    'MODULE_DATESELECTOR' => 'Dateselector',
+    'MODULE_METHODS' => 'Methods',
+    'MODULE_OBJECT_INSTANCES' => 'Object Instances',
+    'MODULE_PROPERTIES' => 'Object Properties',
+    'MODULE_PVALUES' => 'PValues',
+    'MODULE_SHOUTBOX' => 'Shoutbox',
+    'MODULE_SHOUTROOMS' => 'Shoutrooms',
+    'MODULE_SKINS' => 'Design Skins',
+    'MODULE_THUMB' => 'Thumbnailer',
+    'MODULE_PATTERNS' => 'Patterns',
+    'MODULE_ONEWIRE' => '1-Wire',
+    'MODULE_SCENES' => 'Scenes',
+    'MODULE_SNMP' => 'SNMP',
+    'MODULE_ZWAVE' => 'Z-Wave',
+    'MODULE_SECURITY_RULES' => 'Security Rules',
+    'MODULE_MQTT' => 'MQTT',
+    'MODULE_MODBUS' => 'ModBus',
+    'MODULE_CONNECT' => 'CONNECT',
+    'MODULE_MARKET' => 'Plugins Market',
+    'MODULE_MYBLOCKS' => 'My blocks',
+    'MODULE_TEXTFILES' => 'Text files',
+    'MODULE_SOUNDFILES' => 'Sound files',
+    'MODULE_SYSTEM_ERRORS' => 'System Errors',
+    'MODULE_MODULES' => 'Modules',
+    'MODULE_USERLOG' => 'User log',
 
-'MODULE_DASHBOARD'=>'Dashboard',
-'MODULE_DATESELECTOR'=>'Dateselector',
-'MODULE_METHODS'=>'Methods',
-'MODULE_OBJECT_INSTANCES'=>'Object Instances',
-'MODULE_PROPERTIES'=>'Object Properties',
-'MODULE_PVALUES'=>'PValues',
-'MODULE_SHOUTBOX'=>'Shoutbox',
-'MODULE_SHOUTROOMS'=>'Shoutrooms',
-'MODULE_SKINS'=>'Design Skins',
-'MODULE_THUMB'=>'Thumbnailer',
-'MODULE_USERLOG'=>'Users Log',
-'MODULE_PATTERNS'=>'Patterns',
-'MODULE_ONEWIRE'=>'1-Wire',
-'MODULE_SCENES'=>'Scenes',
-'MODULE_SNMP'=>'SNMP',
-'MODULE_ZWAVE'=>'Z-Wave',
-'MODULE_SECURITY_RULES'=>'Security Rules',
-'MODULE_MQTT'=>'MQTT',
-'MODULE_MODBUS'=>'ModBus',
-'MODULE_CONNECT'=>'CONNECT',
-'MODULE_MARKET'=>'Plugins Market',
+    'SETUP' => 'Setup',
 
-'SETUP'=>'Setup', // objects/objects_edit_methods.html; 
 
+    'DATA_SAVED' => 'Data has been saved!',
+    'ALL' => 'All',
+    'EXECUTE' => 'Execute',
+    'SCRIPT' => 'Script',
+    'CODE' => 'Code',
 
-'DATA_SAVED'=>'Data has been saved!', // objects/objects_edit_methods.html; objects/objects_edit_default.html; objects/objects_edit_properties.html; patterns/patterns_edit.html; scripts/scripts_edit.html; users/users_edit.html; methods/methods_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; history/history_edit.html; classes/classes_edit_default.html; dashboard/action_admin.html; locations/locations_edit.html; pinghosts/pinghosts_edit.html; rss_channels/rss_channels_edit_default.html; events/events_edit.html; layouts/layouts_edit.html; app_products/product_categories_edit.html; app_products/products_edit_default.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; properties/properties_edit.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; control_access/control_access.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
-'ALL'=>'All', // objects/objects_edit_methods.html; pinghosts/pinghosts_search_admin.html; events/events_search_site.html; 
-'EXECUTE'=>'Execute', // objects/objects_edit_methods.html; scripts/scripts_search_admin.html; methods/methods_edit.html; 
-'SCRIPT'=>'Script', // objects/objects_edit_methods.html; patterns/patterns_edit.html; methods/methods_edit.html; usbdevices/action_admin.html; pinghosts/pinghosts_edit.html; pinghosts/pinghosts_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; 
-'CODE'=>'Code', // objects/objects_edit_methods.html; patterns/patterns_edit.html; scripts/scripts_edit.html; methods/methods_edit.html; saverestore/action_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_edit.html; pinghosts/pinghosts_edit.html; btdevices/btdevices.html; btdevices/btdevices.html; layouts/layouts_edit.html; app_products/products_edit_history.html; app_products/products_edit_codes.html; webvars/webvars_edit.html; scenes/elements_edit.html; 
 
+    'CALL_PARENT_METHOD' => 'Call parent method',
 
-'CALL_PARENT_METHOD'=>'Call parent method', // objects/objects_edit_methods.html; 
 
+    'BEFORE_CODE_EXECUTION' => 'before execution code above',
 
-'BEFORE_CODE_EXECUTION'=>'before execution code above', // objects/objects_edit_methods.html; 
 
+    'AFTER_CODE_EXECUTION' => 'after execution code above',
+    'NEVER' => 'never',
+    'UPDATE' => 'Update',
+    'CANCEL' => 'Cancel',
+    'MAKE_COPY' => 'Make a copy (clone)',
 
-'AFTER_CODE_EXECUTION'=>'after execution code above', // objects/objects_edit_methods.html; 
-'NEVER'=>'never', // objects/objects_edit_methods.html; 
-'UPDATE'=>'Update', // objects/objects_edit_methods.html; objects/objects_edit_default.html; objects/objects_edit_properties.html; scripts/scripts_edit.html; methods/methods_edit.html; classes/classes_edit_default.html; locations/locations_edit.html; usbdevices/action_admin.html; btdevices/btdevices.html; app_weather/action_admin.html; rss_channels/rss_channels_search_admin.html; rss_channels/rss_channels_edit_default.html; app_products/products_edit_default.html; properties/properties_edit.html; 
-'CANCEL'=>'Cancel', // objects/objects_edit_methods.html; objects/objects_edit_default.html; patterns/patterns_edit.html; jobs/action_admin.html; scripts/scripts_edit.html; users/users_search_admin.html; users/users_edit.html; methods/methods_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; pvalues/pvalues_search_admin.html; history/history_edit.html; classes/classes_edit_default.html; locations/locations_edit.html; control_modules/control_modules.html; pinghosts/pinghosts_edit.html; app_calendar/usual_edit.html; rss_channels/rss_channels_edit_default.html; events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; layouts/layouts_search_site.html; layouts/layouts_edit.html; app_products/all_products.html; app_products/all_products.html; app_products/all_products.html; app_products/product_categories_edit.html; app_products/product_categories_search_site.html; app_products/products_search_site.html; app_products/shopping_list_items_search_site.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; app_products/products_edit_default.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_edit.html; properties/properties_edit.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; terminals/terminals_search_admin.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
-'MAKE_COPY'=>'Make a copy (clone)',
 
+    'ARE_YOU_SURE' => 'Are you sure? Please confirm.',
+    'DELETE' => 'Delete',
+    'DELETE_SELECTED' => 'Delete selected',
+    'EXPORT_SELECTED' => 'Export selected',
 
-'ARE_YOU_SURE'=>'Are you sure? Please confirm.', // objects/objects_edit_methods.html; objects/objects_edit_properties.html; patterns/patterns_search_admin.html; jobs/action_admin.html; scripts/scripts_search_admin.html; scripts/scripts_search_admin.html; settings/settings_search_admin.html; commands/commands_search_admin.html; saverestore/action_admin.html; saverestore/action_admin.html; classes/classes_search_admin.html; usbdevices/action_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_search_admin.html; btdevices/btdevices.html; btdevices/btdevices.html; btdevices/btdevices.html; app_calendar/usual_edit.html; rss_channels/rss_channels_search_admin.html; events/events_search_admin.html; events/events_search_site.html; layouts/layouts_search_admin.html; app_products/products_edit_codes.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; onewire/onewire_search_admin.html; app_tdwiki/action_admin.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_search_admin.html; app_mediabrowser/action_admin.html; skins/action_admin.html; skins/action_admin.html; scenes/scenes_search_admin.html; scenes/elements_search_admin.html; control_access/control_access.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpsactions_search_admin.html; userlog/userlog_search_admin.html; 
-'DELETE'=>'Delete', // objects/objects_edit_methods.html; patterns/patterns_search_admin.html; scripts/scripts_search_admin.html; users/users_search_admin.html; methods/methods_search_admin.html; commands/commands_search_admin.html; commands/commands_edit.html; pvalues/pvalues_search_admin.html; history/history_search_admin.html; locations/locations_search_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_search_admin.html; btdevices/btdevices.html; app_calendar/usual_edit.html; rss_channels/rss_items_search_admin.html; rss_channels/rss_channels_search_admin.html; events/events_search_admin.html; layouts/layouts_search_admin.html; app_products/products_edit_codes.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; onewire/onewire_search_admin.html; app_tdwiki/tdwiki_search_admin.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_search_admin.html; properties/properties_search_admin.html; app_mediabrowser/action_admin.html; skins/action_admin.html; scenes/scenes_search_admin.html; scenes/elements_edit.html; scenes/elements_search_admin.html; terminals/terminals_search_admin.html; control_access/control_access.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpsactions_search_admin.html; userlog/userlog_search_admin.html; 
-'DELETE_SELECTED'=>'Delete selected',
-'EXPORT_SELECTED'=>'Export selected',
 
+    'CALL_METHOD' => 'Call method',
 
-'CALL_METHOD'=>'Call method', // objects/objects_edit_methods.html; 
 
+    'BY_URL' => 'By URL',
 
-'BY_URL'=>'By URL', // objects/objects_edit_methods.html; 
-'TEST'=>'Test', // objects/objects_edit_methods.html; 
+    'COMMAND_LINE' => 'Using command-line',
 
 
-'COMMAND_LINE'=>'Using command-line', // objects/objects_edit_methods.html; scripts/scripts_edit.html; 
+    'FILLOUT_REQURED' => 'Please, fill out required fields!',
 
 
-'FILLOUT_REQURED'=>'Please, fill out required fields!', // objects/objects_edit_default.html; patterns/patterns_edit.html; scripts/scripts_edit.html; users/users_edit.html; methods/methods_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; history/history_edit.html; classes/classes_edit_default.html; locations/locations_edit.html; pinghosts/pinghosts_edit.html; rss_channels/rss_channels_edit_default.html; events/events_edit.html; layouts/layouts_edit.html; app_products/product_categories_edit.html; app_products/products_edit_default.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; properties/properties_edit.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
+    'NEW_OBJECT' => 'New Object',
+    'TITLE' => 'Title',
+    'ALT_TITLES' => 'Alternative titles (comma separated)',
+    'CLASS' => 'Class',
+    'DESCRIPTION' => 'Description',
+    'LOCATION' => 'Location',
+    'ADD' => 'Add',
+    'BACK' => 'Back',
+    'OBJECT' => 'Object',
+    'DETAILS' => 'Details',
+    'PROPERTIES' => 'Properties',
+    'METHODS' => 'Methods',
+    'HISTORY' => 'History',
 
 
-'NEW_OBJECT'=>'New Object', // objects/objects_edit_default.html; 
-'TITLE'=>'Title', // objects/objects_edit_default.html; objects/objects_search_admin.html; patterns/patterns_edit.html; patterns/patterns_search_admin.html; jobs/action_admin.html; scripts/scripts_edit.html; methods/methods_search_admin.html; methods/methods_edit.html; commands/commands_edit.html; classes/classes_edit_default.html; locations/locations_edit.html; control_modules/control_modules.html; usbdevices/action_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_edit.html; btdevices/btdevices.html; btdevices/btdevices.html; app_calendar/usual_edit.html; rss_channels/rss_channels_search_admin.html; rss_channels/rss_channels_edit_default.html; events/events_search_admin.html; layouts/layouts_search_site.html; layouts/layouts_search_site.html; layouts/layouts_search_admin.html; layouts/layouts_edit.html; app_products/products_edit_history.html; app_products/product_categories_edit.html; app_products/product_categories_search_site.html; app_products/products_edit_codes.html; app_products/products_search_admin.html; app_products/shopping_list_items_search_site.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; app_products/products_edit_default.html; onewire/onewire_edit.html; onewire/onewire_edit.html; app_tdwiki/scripts.js; watchfolders/watchfolders_edit.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_edit.html; properties/properties_edit.html; properties/properties_search_admin.html; app_mediabrowser/action_admin.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; scenes/elements_edit.html; terminals/terminals_edit.html; terminals/terminals_search_admin.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpslocations_edit.html; 
-'CLASS'=>'Class', // objects/objects_edit_default.html; objects/objects_search_admin.html; properties/properties_edit.html; properties/properties_search_admin.html; 
-'DESCRIPTION'=>'Description', // objects/objects_edit_default.html; objects/objects_search_admin.html; methods/methods_search_admin.html; methods/methods_edit.html; properties/properties_edit.html; properties/properties_search_admin.html; 
-'LOCATION'=>'Location', // objects/objects_edit_default.html; objects/objects_search_admin.html; app_calendar/usual_edit.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; 
-'ADD'=>'Add', // objects/objects_edit_default.html; patterns/patterns_edit.html; jobs/action_admin.html; scripts/scripts_edit.html; users/users_edit.html; methods/methods_edit.html; commands/commands_edit.html; commands/commands_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; history/history_edit.html; classes/classes_edit_default.html; locations/locations_edit.html; pinghosts/pinghosts_edit.html; app_calendar/usual_list.html; rss_channels/rss_channels_edit_default.html; events/action_addevent.html; events/events_edit.html; layouts/layouts_edit.html; app_products/all_products.html; app_products/all_products.html; app_products/product_categories_edit.html; app_products/products_edit_codes.html; app_products/products_search_admin.html; app_products/products_search_admin.html; app_products/products_edit_default.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; properties/properties_edit.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
-'BACK'=>'Back', // objects/action_admin.html; patterns/patterns_edit.html; scripts/scripts_edit.html; users/users_edit.html; methods/methods_edit.html; commands/commands_search_pda.html; pvalues/pvalues_edit.html; history/history_edit.html; classes/action_admin.html; dashboard/action_admin.html; locations/locations_edit.html; control_modules/control_modules.html; usbdevices/action_admin.html; pinghosts/pinghosts_edit.html; btdevices/btdevices.html; rss_channels/rss_channels_edit_items.html; rss_channels/rss_channels_edit_default.html; events/events_edit.html; layouts/layouts_edit.html; app_products/action_mobile.html; app_products/product_categories_edit.html; app_products/action_admin.html; onewire/onewire_edit.html; app_tdwiki/tdwiki_view.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; properties/properties_edit.html; scenes/elements_edit.html; scenes/action_admin.html; terminals/terminals_edit.html; control_access/control_access.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
-'OBJECT'=>'Object', // objects/action_admin.html; history/history_edit.html; 
-'DETAILS'=>'Details', // objects/action_admin.html; history/history_edit.html; events/events_search_admin.html; events/action_addevent.html; events/events_edit.html; events/events_search_site.html; app_products/action_mobile.html; app_products/action_admin.html; app_products/action_usual.html; app_products/products_edit_default.html; scenes/action_admin.html; 
-'PROPERTIES'=>'Properties', // objects/action_admin.html; objects/objects_search_admin.html; classes/classes_search_admin.html; classes/action_admin.html; onewire/onewire_edit.html; 
-'METHODS'=>'Methods', // objects/action_admin.html; objects/objects_search_admin.html; classes/classes_search_admin.html; classes/action_admin.html; 
-'HISTORY'=>'History', // objects/action_admin.html; usbdevices/action_admin.html; btdevices/btdevices.html; app_products/action_mobile.html; app_products/action_admin.html; app_products/action_usual.html; 
+    'ADD_NEW_OBJECT' => 'Add new object',
+    'PAGES' => 'Pages',
+    'EDIT' => 'Edit',
 
 
-'ADD_NEW_OBJECT'=>'Add new object', // objects/objects_search_admin.html; 
-'PAGES'=>'Pages', // objects/objects_search_admin.html; objects/objects_search_admin.html; users/users_search_admin.html; users/users_search_admin.html; pvalues/pvalues_search_admin.html; pvalues/pvalues_search_admin.html; history/history_search_admin.html; history/history_search_admin.html; pinghosts/pinghosts_search_admin.html; pinghosts/pinghosts_search_admin.html; rss_channels/rss_items_search_admin.html; rss_channels/rss_items_search_admin.html; events/events_search_admin.html; events/events_search_admin.html; events/events_search_site.html; events/events_search_site.html; app_products/products_search_site.html; app_products/products_search_site.html; onewire/onewire_search_admin.html; onewire/onewire_search_admin.html; watchfolders/watchfolders_search_admin.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_search_admin.html; webvars/webvars_search_admin.html; terminals/terminals_search_admin.html; terminals/terminals_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_search_admin.html; userlog/userlog_search_admin.html; userlog/userlog_search_admin.html; 
-'EDIT'=>'Edit', // objects/objects_search_admin.html; patterns/patterns_search_admin.html; scripts/scripts_search_admin.html; users/users_search_admin.html; methods/methods_search_admin.html; commands/commands_edit.html; commands/commands_edit.html; pvalues/pvalues_search_admin.html; classes/classes_search_admin.html; locations/locations_search_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_search_admin.html; btdevices/btdevices.html; app_calendar/usual_list.html; app_calendar/usual_list.html; app_calendar/usual_list.html; app_calendar/usual_list.html; app_calendar/usual_edit.html; rss_channels/rss_channels_search_admin.html; events/events_search_admin.html; layouts/layouts_search_admin.html; app_products/all_products.html; app_products/product_categories_search_admin.html; onewire/onewire_search_admin.html; app_tdwiki/tdwiki_search_admin.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_search_admin.html; properties/properties_search_admin.html; app_mediabrowser/action_admin.html; scenes/elements_search_admin.html; terminals/terminals_search_admin.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpsactions_search_admin.html; 
+    'NO_OBJECTS_DEFINED' => 'No objects defined',
 
 
-'NO_OBJECTS_DEFINED'=>'No objects defined', // objects/objects_search_admin.html; 
+    'ADD_NEW_PROPERTY' => 'Add new property',
 
 
-'ADD_NEW_PROPERTY'=>'Add new property', // objects/objects_edit_properties.html; properties/properties_search_admin.html; 
+    'NEW_RECORD' => 'New record',
+    'PATTERN' => 'Pattern',
 
 
-'NEW_RECORD'=>'New record', // patterns/patterns_edit.html; users/users_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; history/history_edit.html; pinghosts/pinghosts_edit.html; rss_channels/rss_channels_edit_items.html; events/events_edit.html; layouts/layouts_edit.html; app_products/products_edit_history.html; app_products/product_categories_edit.html; app_products/products_edit_codes.html; app_products/products_edit_default.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
-'PATTERN'=>'Pattern', // patterns/patterns_edit.html; 
+    'TIME_LIMIT' => 'Time limit',
+    'SECONDS' => 'seconds',
 
 
-'TIME_LIMIT'=>'Time limit', // patterns/patterns_edit.html; 
-'SECONDS'=>'seconds', // patterns/patterns_edit.html; jobs/action_admin.html; pinghosts/pinghosts_edit.html; pinghosts/pinghosts_edit.html; onewire/onewire_edit.html; webvars/webvars_edit.html; 
+    'EXECUTE_ON_MATCH' => 'Execute on match',
+    'SUBMIT' => 'Submit',
 
 
-'EXECUTE_ON_MATCH'=>'Execute on match', // patterns/patterns_edit.html; 
-'SUBMIT'=>'Submit', // patterns/patterns_edit.html; settings/settings_search_admin.html; users/users_edit.html; commands/commands_edit.html; pvalues/pvalues_edit.html; history/history_edit.html; dashboard/action_admin.html; pinghosts/pinghosts_edit.html; app_calendar/usual_edit.html; events/events_edit.html; layouts/layouts_edit.html; app_products/product_categories_edit.html; onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; app_mediabrowser/action_admin.html; skins/action_admin.html; scenes/scenes_edit_default.html; scenes/elements_edit.html; terminals/terminals_edit.html; control_access/control_access.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpsdevices_edit.html; app_gpstrack/gpslocations_edit.html; app_gpstrack/gpsactions_edit.html; 
+    'ADD_NEW_RECORD' => 'Add new record',
+    'EDIT_RECORD' => 'Edit record',
 
+    'NO_RECORDS_FOUND' => 'No records found',
+    'COMMAND' => 'Command',
 
-'ADD_NEW_RECORD'=>'Add new record', // patterns/patterns_search_admin.html; users/users_search_admin.html; pvalues/pvalues_search_admin.html; events/events_search_admin.html; app_products/product_categories_search_admin.html; app_tdwiki/tdwiki_search_admin.html; watchfolders/watchfolders_search_admin.html; terminals/terminals_search_admin.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpsactions_search_admin.html; 
 
+    'RUN_IN' => 'Run in',
+    'MINUTES' => 'minutes',
+    'HOURS' => 'hours',
+    'PROCESSED' => 'processed',
 
-'NO_RECORDS_FOUND'=>'No records found', // patterns/patterns_search_admin.html; scripts/scripts_search_admin.html; settings/settings_search_site.html; settings/settings_search_admin.html; users/users_search_admin.html; methods/methods_search_admin.html; commands/commands_search_pda.html; commands/commands_search_admin.html; pvalues/pvalues_search_admin.html; classes/classes_search_admin.html; locations/locations_search_admin.html; usbdevices/action_admin.html; pinghosts/pinghosts_search_admin.html; rss_channels/rss_items_search_admin.html; rss_channels/rss_channels_search_admin.html; events/events_search_admin.html; events/events_search_site.html; layouts/layouts_search_site.html; layouts/layouts_search_admin.html; app_products/product_categories_search_site.html; app_products/products_search_admin.html; app_products/products_search_site.html; app_products/shopping_list_items_search_site.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; app_tdwiki/tdwiki_search_admin.html; app_tdwiki/tdwiki_search_site.html; watchfolders/watchfolders_search_admin.html; webvars/webvars_search_admin.html; properties/properties_search_admin.html; scenes/scenes_search_admin.html; scenes/elements_search_admin.html; terminals/terminals_search_admin.html; app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpsactions_search_admin.html; userlog/userlog_search_admin.html; 
-'COMMAND'=>'Command', // jobs/action_admin.html; commands/commands_edit.html; shoutbox/shouts_search_site.html; 
 
+    'IN_QUEUE' => 'in queue',
 
-'RUN_IN'=>'Run in', // jobs/action_admin.html; 
-'MINUTES'=>'minutes', // jobs/action_admin.html; rss_channels/rss_channels_edit_default.html; watchfolders/watchfolders_edit.html; 
-'HOURS'=>'hours', // jobs/action_admin.html; 
-'PROCESSED'=>'processed', // jobs/action_admin.html; events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; 
 
+    'NEW_SCRIPT' => 'New script',
 
-'IN_QUEUE'=>'in queue', // jobs/action_admin.html; 
 
+    'EXECUTE_SCRIPT_AFTER_UPDATE' => 'execute after update',
 
-'NEW_SCRIPT'=>'New script', // scripts/scripts_edit.html; 
 
+    'RUN_BY_URL' => 'Run by URL',
 
-'EXECUTE_SCRIPT_AFTER_UPDATE'=>'execute after update', // scripts/scripts_edit.html; 
 
+    'ADD_NEW_SCRIPT' => 'Add new script',
 
-'RUN_BY_URL'=>'Run by URL', // scripts/scripts_edit.html; 
 
+    'GENERAL_SETTINGS' => 'General settings',
 
-'ADD_NEW_SCRIPT'=>'Add new script', // scripts/scripts_search_admin.html; 
 
+    'SETTINGS_UPDATED' => 'Settings updated!',
 
-'GENERAL_SETTINGS'=>'General settings', // settings/settings_search_admin.html; 
 
+    'DEFAULT_VALUE' => 'Default value',
 
-'SETTINGS_UPDATED'=>'Settings updated!', // settings/settings_search_admin.html; 
 
+    'RESET_TO_DEFAULT' => 'Reset to default',
+    'SEARCH' => 'Search',
+    'USERNAME' => 'Username',
+    'NAME' => 'Name',
+    'EMAIL' => 'E-mail',
+    'SKYPE' => 'Skype',
 
-'DEFAULT_VALUE'=>'Default value', // settings/settings_search_admin.html; settings/settings_search_admin.html; settings/settings_search_admin.html; settings/settings_search_admin.html; 
 
+    'MOBILE_PHONE' => 'Mobile Phone',
 
-'RESET_TO_DEFAULT'=>'Reset to default', // settings/settings_search_admin.html; 
-'SEARCH'=>'Search', // users/users_search_admin.html; users/users_search_admin.html; users/users_search_admin.html; pvalues/pvalues_search_admin.html; pvalues/pvalues_search_admin.html; pvalues/pvalues_search_admin.html; events/events_search_admin.html; events/events_search_admin.html; events/events_search_admin.html; events/events_search_site.html; events/events_search_site.html; events/events_search_site.html; layouts/layouts_search_site.html; layouts/layouts_search_site.html; layouts/layouts_search_site.html; app_products/product_categories_search_site.html; app_products/product_categories_search_site.html; app_products/product_categories_search_site.html; app_products/products_search_site.html; app_products/products_search_site.html; app_products/products_search_site.html; app_products/shopping_list_items_search_site.html; app_products/shopping_list_items_search_site.html; app_products/shopping_list_items_search_site.html; app_products/product_categories_search_admin.html; app_products/product_categories_search_admin.html; app_products/product_categories_search_admin.html; app_products/shopping_list_items_search_admin.html; app_products/shopping_list_items_search_admin.html; app_products/shopping_list_items_search_admin.html; watchfolders/watchfolders_search_admin.html; watchfolders/watchfolders_search_admin.html; watchfolders/watchfolders_search_admin.html; terminals/terminals_search_admin.html; terminals/terminals_search_admin.html; terminals/terminals_search_admin.html; 
-'USERNAME'=>'Username', // users/users_search_admin.html; users/users_edit.html; webvars/webvars_edit.html; 
-'NAME'=>'Name', // users/users_search_admin.html; users/users_edit.html; 
-'EMAIL'=>'E-mail', // users/users_search_admin.html; users/users_edit.html; 
-'SKYPE'=>'Skype', // users/users_edit.html; 
 
+    'ADD_METHOD' => 'Add new method',
 
-'MOBILE_PHONE'=>'Mobile Phone', // users/users_edit.html; 
 
+    'PARENT_METHODS' => 'Parent methods:',
+    'OVERWRITE' => 'Overwrite',
+    'ONLY_CLASSES' => 'Do not import objects',
 
-'ADD_METHOD'=>'Add new method', // methods/methods_search_admin.html; 
 
+    'NEW_METHOD' => 'New method',
+    'HOME' => 'Home',
+    'OFF' => 'Off',
+    'ON' => 'On',
 
-'PARENT_METHODS'=>'Parent methods:', // methods/methods_search_admin.html; 
-'OVERWRITE'=>'Overwrite', // methods/methods_search_admin.html; classes/classes_search_admin.html; properties/properties_search_admin.html; 
 
+    'ADD_NEW_SECTION' => 'Add new section',
+    'EXPAND' => 'Expand',
 
-'NEW_METHOD'=>'New method', // methods/methods_edit.html; 
-'HOME'=>'Home', // commands/commands_search_pda.html; commands/commands_edit.html; app_products/action_admin.html; 
-'OFF'=>'Off', // commands/commands_search_pda.html; 
-'ON'=>'On', // commands/commands_search_pda.html; 
 
+    'PARENT_MENU_ITEM' => 'Parent menu item',
+    'PRIORITY' => 'Priority',
+    'TYPE' => 'Type',
+    'LABEL' => 'Label',
 
-'ADD_NEW_SECTION'=>'Add new section', // commands/commands_search_admin.html; 
-'EXPAND'=>'Expand', // commands/commands_search_admin.html; classes/classes_search_admin.html; app_products/product_categories_search_admin.html; 
 
+    'NEW_WINDOW' => 'New Window',
+    'URL' => 'URL',
 
-'PARENT_MENU_ITEM'=>'Parent menu item', // commands/commands_edit.html; 
-'PRIORITY'=>'Priority', // commands/commands_edit.html; layouts/layouts_search_site.html; layouts/layouts_search_admin.html; layouts/layouts_edit.html; app_products/product_categories_edit.html; scenes/scenes_edit_default.html; 
-'TYPE'=>'Type', // commands/commands_edit.html; pinghosts/pinghosts_edit.html; events/events_search_admin.html; events/action_addevent.html; events/events_edit.html; events/events_search_site.html; layouts/layouts_search_site.html; layouts/layouts_search_admin.html; layouts/layouts_edit.html; watchfolders/watchfolders_edit.html; scenes/elements_edit.html; 
-'LABEL'=>'Label', // commands/commands_edit.html; 
 
+    'JS_COMMAND' => 'JavaScript Command',
+    'BUTTON' => 'Button',
 
-'NEW_WINDOW'=>'New Window', // commands/commands_edit.html; 
-'URL'=>'URL', // commands/commands_edit.html; commands/commands_edit.html; rss_channels/rss_channels_search_admin.html; layouts/layouts_search_site.html; layouts/layouts_edit.html; webvars/webvars_edit.html; 
 
+    'ON_OFF_SWITCH' => 'On/Off Switch',
 
-'JS_COMMAND'=>'JavaScript Command', // commands/commands_edit.html; 
-'BUTTON'=>'Button', // commands/commands_edit.html; 
 
+    'SELECT_BOX' => 'Select Box',
 
-'ON_OFF_SWITCH'=>'On/Off Switch', // commands/commands_edit.html; 
 
+    'SLIDER_BOX' => 'Slider',
 
-'SELECT_BOX'=>'Select Box', // commands/commands_edit.html; 
 
+    'PLUS_MINUS_BOX' => 'Plus/Minus Box',
 
-'SLIDER_BOX'=>'Slider', // commands/commands_edit.html; 
 
+    'TIME_PICKER' => 'Time Picker',
 
-'PLUS_MINUS_BOX'=>'Plus/Minus Box', // commands/commands_edit.html; 
 
+    'TEXT_BOX' => 'Text field',
+    'DATE_BOX' => 'Date field',
+    'COLOR_PICKER' => 'Color-picker',
 
-'TIME_PICKER'=>'Time Picker', // commands/commands_edit.html; 
 
+    'CUSTOM_HTML_BOX' => 'Custom HTML-code',
+    'ICON' => 'Icon',
 
-'TEXT_BOX'=>'Text field', // commands/commands_edit.html; 
-'DATE_BOX'=>'Date field', // commands/commands_edit.html; 
 
+    'MIN_VALUE' => 'Min. value',
 
-'CUSTOM_HTML_BOX'=>'Custom HTML-code', // commands/commands_edit.html; 
-'ICON'=>'Icon', // commands/commands_edit.html; 
 
+    'MAX_VALUE' => 'Max. value',
 
-'MIN_VALUE'=>'Min. value', // commands/commands_edit.html; 
 
+    'STEP_VALUE' => 'Step value',
+    'DATA' => 'Data',
+    'INTERFACE' => 'Interface',
 
-'MAX_VALUE'=>'Max. value', // commands/commands_edit.html; 
 
+    'AUTO_UPDATE_PERIOD' => 'Auto update period',
+    'POLLING_PERIOD' => 'Polling period',
 
-'STEP_VALUE'=>'Step value', // commands/commands_edit.html; 
-'DATA'=>'Data', // commands/commands_edit.html; saverestore/action_admin.html; 
 
+    'CURRENT_VALUE' => 'Current value',
+    'PROPERTY' => 'Property',
 
-'AUTO_UPDATE_PERIOD'=>'Auto update period', // commands/commands_edit.html; 
 
+    'ONCHANGE_OBJECT' => 'On-change Object',
+    'ONCHANGE_METHOD' => 'On-change Method',
+    'METHOD' => 'Method',
+    'ONCHANGE_SCRIPT' => 'Script',
+    'ONCHANGE_CODE' => 'Code',
 
-'CURRENT_VALUE'=>'Current value', // commands/commands_edit.html; 
-'PROPERTY'=>'Property', // commands/commands_edit.html; webvars/webvars_edit.html; 
 
+    'TARGET_WINDOW' => 'Target window',
+    'WIDTH' => 'Width',
+    'HEIGHT' => 'Height',
 
-'ONCHANGE_OBJECT'=>'On-change Object', // commands/commands_edit.html; 
-'ONCHANGE_METHOD'=>'On-change Method', // commands/commands_edit.html; 
-'METHOD'=>'Method', // commands/commands_edit.html; history/history_edit.html; 
-'ONCHANGE_SCRIPT'=>'Script', // commands/commands_edit.html; onewire/onewire_edit.html; onewire/onewire_edit.html; 
-'ONCHANGE_CODE'=>'Code', // commands/commands_edit.html; 
 
+    'ON_THE_SAME_LEVEL' => 'On the same level',
 
-'TARGET_WINDOW'=>'Target window', // commands/commands_edit.html; 
-'WIDTH'=>'Width', // commands/commands_edit.html; scenes/elements_edit.html; 
-'HEIGHT'=>'Height', // commands/commands_edit.html; scenes/elements_edit.html; 
 
+    'CHILD_ITEMS' => 'Child items',
+    'ADDED' => 'Added',
+    'VALUE' => 'Value',
 
-'ON_THE_SAME_LEVEL'=>'On the same level', // commands/commands_edit.html; 
 
+    'OLD_VALUE' => 'Old value',
 
-'CHILD_ITEMS'=>'Child items', // commands/commands_edit.html; 
-'ADDED'=>'Added', // history/history_edit.html; events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; app_products/all_products.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; 
-'VALUE'=>'Value', // history/history_edit.html; onewire/onewire_edit.html; 
 
+    'NEW_VALUE' => 'New value',
+    'UPDATES' => 'Updates',
 
-'OLD_VALUE'=>'Old value', // history/history_edit.html; 
 
+    'NO_UPDATES_AVAILABLE' => 'No updates available',
 
-'NEW_VALUE'=>'New value', // history/history_edit.html; 
-'UPDATES'=>'Updates', // saverestore/action_admin.html; 
 
+    'NEW_VERSION' => 'New version',
 
-'NO_UPDATES_AVAILABLE'=>'No updates available', // saverestore/action_admin.html; 
 
+    'INSTALL_NEW_MODULES' => 'Install new modules',
 
-'NEW_VERSION'=>'New version', // saverestore/action_admin.html; 
 
+    'NO_MODULES_AVAILABLE' => 'No modules available',
 
-'INSTALL_NEW_MODULES'=>'Install new modules', // saverestore/action_admin.html; 
 
+    'GET_LIST_OF_MODULES' => 'Get list of modules',
 
-'NO_MODULES_AVAILABLE'=>'No modules available', // saverestore/action_admin.html; 
 
+    'SUBMIT_NEWER_FILES' => 'Submit newer files',
 
-'GET_LIST_OF_MODULES'=>'Get list of modules', // saverestore/action_admin.html; 
 
+    'NO_FILES_TO_SUBMIT' => 'No files to submit',
+    'FOLDER' => 'Folder',
 
-'SUBMIT_NEWER_FILES'=>'Submit newer files', // saverestore/action_admin.html; 
 
+    'YOUR_NAME' => 'Your name',
+    'YOUR_EMAIL' => 'Your e-mail',
+    'NOTES' => 'Notes',
 
-'NO_FILES_TO_SUBMIT'=>'No files to submit', // saverestore/action_admin.html; 
-'FOLDER'=>'Folder', // saverestore/action_admin.html; watchfolders/watchfolders_search_admin.html; 
 
+    'SUBMIT_SELECTED_FILES' => 'Submit selected files',
 
-'YOUR_NAME'=>'Your name', // saverestore/action_admin.html; 
-'YOUR_EMAIL'=>'Your e-mail', // saverestore/action_admin.html; 
-'NOTES'=>'Notes', // saverestore/action_admin.html; app_calendar/usual_edit.html; 
 
+    'CHECK_FILES_FOR_SUBMIT' => 'Check files for submit',
+    'DESIGN' => 'Design',
 
-'SUBMIT_SELECTED_FILES'=>'Submit selected files', // saverestore/action_admin.html; 
 
+    'FILES_UPLOADED' => 'Files uploaded',
 
-'CHECK_FILES_FOR_SUBMIT'=>'Check files for submit', // saverestore/action_admin.html; 
-'DESIGN'=>'Design', // saverestore/action_admin.html; 
 
+    'CLEAR_TEMPORARY_FOLDER' => 'Clear temporary folder',
 
-'FILES_UPLOADED'=>'Files uploaded', // saverestore/action_admin.html; 
 
+    'ADD_NEW_CLASS' => 'Add new class',
+    'OBJECTS' => 'Objects',
+    'EXPORT' => 'Export',
+    'EXPORT_CLASS_FULL' => 'Export Class and Objects',
+    'EXPORT_CLASS_NO_OBJECTS' => 'Export Class (w/o Objects)',
 
-'CLEAR_TEMPORARY_FOLDER'=>'Clear temporary folder', // saverestore/action_admin.html; 
 
+    'IMPORT_CLASS_FROM_FILE' => 'Import class from file',
+    'IMPORT' => 'Import',
 
-'ADD_NEW_CLASS'=>'Add new class', // classes/classes_search_admin.html; 
-'OBJECTS'=>'Objects', // classes/classes_search_admin.html; classes/classes_search_admin.html; classes/action_admin.html; 
-'EXPORT'=>'Export', // classes/classes_search_admin.html; 
 
+    'NEW_CLASS' => 'New class',
 
-'IMPORT_CLASS_FROM_FILE'=>'Import class from file', // classes/classes_search_admin.html; 
-'IMPORT'=>'Import', // classes/classes_search_admin.html; 
 
+    'PARENT_CLASS' => 'Parent class',
 
-'NEW_CLASS'=>'New class', // classes/classes_edit_default.html; 
 
+    'DO_NOT_SAVE_CLASS_ACTIVITY' => 'do not save class activity to the log',
+    'MAIN' => 'Main',
 
-'PARENT_CLASS'=>'Parent class', // classes/classes_edit_default.html; 
 
+    'STRING_BACK' => 'Back',
+    'STRING_SUCCESS' => 'Data has been saved!',
+    'STRING_ERROR' => 'Error',
+    'STRING_NEW_RECORD' => 'New record',
 
-'DO_NOT_SAVE_CLASS_ACTIVITY'=>'do not save class activity to the log', // classes/classes_edit_default.html; 
-'MAIN'=>'Main', // classes/action_admin.html; 
 
+    'SHOUTROOMS_TITLE' => 'Title',
+    'SHOUTROOMS_PRIORITY' => 'Priority',
 
-'STRING_BACK'=>'Back', // shoutrooms/shoutrooms_edit.html; 
-'STRING_SUCCESS'=>'Data has been saved!', // shoutrooms/shoutrooms_edit.html; 
-'STRING_ERROR'=>'Error', // shoutrooms/shoutrooms_edit.html; 
-'STRING_NEW_RECORD'=>'New record', // shoutrooms/shoutrooms_edit.html; 
 
+    'FORM_SUBMIT' => 'Submit',
+    'FORM_ADD' => 'Add',
+    'FORM_CANCEL' => 'Cancel',
 
-'SHOUTROOMS_TITLE'=>'Title', // shoutrooms/shoutrooms_edit.html; shoutrooms/shoutrooms_search_admin.html; 
-'SHOUTROOMS_PRIORITY'=>'Priority', // shoutrooms/shoutrooms_edit.html; shoutrooms/shoutrooms_search_admin.html; 
 
+    'STRING_ADD_NEW' => 'Add',
 
-'FORM_SUBMIT'=>'Submit', // shoutrooms/shoutrooms_edit.html; 
-'FORM_ADD'=>'Add', // shoutrooms/shoutrooms_edit.html; 
-'FORM_CANCEL'=>'Cancel', // shoutrooms/shoutrooms_edit.html; 
 
+    'SHOUTROOMS_STRING_PUBLIC' => 'Public',
+    'SHOUTROOMS_STRING_PRIVATE' => 'Private',
 
-'STRING_ADD_NEW'=>'Add', // shoutrooms/shoutrooms_search_admin.html; 
 
+    'STRING_EDIT' => 'Edit',
+    'STRING_DELETE' => 'Delete',
+    'STRING_NOT_FOUND' => 'Not found',
 
-'SHOUTROOMS_STRING_PUBLIC'=>'Public', // shoutrooms/shoutrooms_search_admin.html; 
-'SHOUTROOMS_STRING_PRIVATE'=>'Private', // shoutrooms/shoutrooms_search_admin.html; 
 
+    'SHOUTROOMS_STRING_SHOUTROOMS' => 'ShoutRooms',
 
-'STRING_EDIT'=>'Edit', // shoutrooms/shoutrooms_search_admin.html; 
-'STRING_DELETE'=>'Delete', // shoutrooms/shoutrooms_search_admin.html; shoutbox/shouts_search_admin.html; 
-'STRING_NOT_FOUND'=>'Not found', // shoutrooms/shoutrooms_search_admin.html; shoutbox/shouts_search_admin.html; 
 
+    'NEW_LOCATION' => 'New location',
 
-'SHOUTROOMS_STRING_SHOUTROOMS'=>'ShoutRooms', // shoutrooms/action_admin.html; 
 
+    'ADD_NEW_LOCATION' => 'Add new location',
+    'LOADING' => 'Loading...',
 
-'NEW_LOCATION'=>'New location', // locations/locations_edit.html; 
 
+    'PLEASE_LOGIN' => 'Please login first.',
+    'SEND' => 'Send',
 
-'ADD_NEW_LOCATION'=>'Add new location', // locations/locations_search_admin.html; 
-'LOADING'=>'Loading...', // shoutbox/shouts_search_site.html; 
 
+    'SHOUTBOX_STRING_DELETE_ALL' => 'Delete all',
 
-'PLEASE_LOGIN'=>'Please login first.', // shoutbox/shouts_search_site.html; 
-'SEND'=>'Send', // shoutbox/shouts_search_site.html; 
 
+    'STRING_PAGES' => 'Pages',
 
-'SHOUTBOX_STRING_DELETE_ALL'=>'Delete all', // shoutbox/shouts_search_admin.html; 
 
+    'MEMBERS_MEMBER' => 'Member',
 
-'STRING_PAGES'=>'Pages', // shoutbox/shouts_search_admin.html; shoutbox/shouts_search_admin.html; 
 
+    'SHOUTBOX_MESSAGE' => 'Message',
+    'SHOUTBOX_ADDED' => 'Added',
 
-'MEMBERS_MEMBER'=>'Member', // shoutbox/shouts_search_admin.html; 
 
+    'STRING_DELETE_CONFIRM' => 'Are you sure?',
 
-'SHOUTBOX_MESSAGE'=>'Message', // shoutbox/shouts_search_admin.html; 
-'SHOUTBOX_ADDED'=>'Added', // shoutbox/shouts_search_admin.html; 
 
+    'DELETE_UNKNOWN_DEVICES' => 'Delete unknown devices',
+    'SERIAL' => 'Serial',
 
-'STRING_DELETE_CONFIRM'=>'Are you sure?', // shoutbox/shouts_search_admin.html; 
 
+    'FIRST_ATTACHED' => 'First attached',
 
-'DELETE_UNKNOWN_DEVICES'=>'Delete unknown devices', // usbdevices/action_admin.html; 
-'SERIAL'=>'Serial', // usbdevices/action_admin.html; usbdevices/action_admin.html; 
 
+    'LAST_ATTACHED' => 'Last attached',
 
-'FIRST_ATTACHED'=>'First attached', // usbdevices/action_admin.html; usbdevices/action_admin.html; 
 
+    'EXECUTE_ON_ATTACH' => 'Execute on attach',
+    'HOSTNAME' => 'Hostname',
 
-'LAST_ATTACHED'=>'Last attached', // usbdevices/action_admin.html; usbdevices/action_admin.html; 
 
+    'SEARCH_WORD' => 'Search word',
 
-'EXECUTE_ON_ATTACH'=>'Execute on attach', // usbdevices/action_admin.html; 
-'HOSTNAME'=>'Hostname', // pinghosts/pinghosts_edit.html; terminals/terminals_edit.html; 
 
+    'ONLINE_ACTION' => 'Online action',
 
-'SEARCH_WORD'=>'Search word', // pinghosts/pinghosts_edit.html; 
 
+    'OFFLINE_ACTION' => 'Offline action',
 
-'ONLINE_ACTION'=>'Online action', // pinghosts/pinghosts_edit.html; 
 
+    'ONLINE_CHECK_INTERVAL' => 'Check interval (online)',
 
-'OFFLINE_ACTION'=>'Offline action', // pinghosts/pinghosts_edit.html; 
 
+    'OFFLINE_CHECK_INTERVAL' => 'Check interval (offline)',
+    'LOG' => 'Log',
 
-'ONLINE_CHECK_INTERVAL'=>'Check interval (online)', // pinghosts/pinghosts_edit.html; 
 
+    'ADD_NEW_HOST' => 'Add new host',
+    'ONLINE' => 'Online',
+    'OFFLINE' => 'Offline',
+    'UNKNOWN' => 'Unknow',
 
-'OFFLINE_CHECK_INTERVAL'=>'Check interval (offline)', // pinghosts/pinghosts_edit.html; 
-'LOG'=>'Log', // pinghosts/pinghosts_edit.html; onewire/onewire_edit.html; webvars/webvars_edit.html; 
 
+    'DELETE_ALL_UNKNOWN_DEVICES' => 'Delete all unknown devices',
+    'DELETE_FOUND_ONCE' => 'Delete devices found once',
 
-'ADD_NEW_HOST'=>'Add new host', // pinghosts/pinghosts_search_admin.html; 
-'ONLINE'=>'Online', // pinghosts/pinghosts_search_admin.html; 
-'OFFLINE'=>'Offline', // pinghosts/pinghosts_search_admin.html; 
-'UNKNOWN'=>'Unknow', // pinghosts/pinghosts_search_admin.html; 
 
+    'FOUND_FIRST' => 'First found',
+    'FOUND_LAST' => 'Last found',
 
-'DELETE_ALL_UNKNOWN_DEVICES'=>'Delete all unknown devices', // btdevices/btdevices.html; 
-'DELETE_FOUND_ONCE'=>'Delete devices found once', // btdevices/btdevices.html; 
 
+    'PAST_DUE' => 'Past due',
+    'TODAY' => 'Today',
 
-'FOUND_FIRST'=>'First found', // btdevices/btdevices.html; btdevices/btdevices.html; 
-'FOUND_LAST'=>'Last found', // btdevices/btdevices.html; btdevices/btdevices.html; 
 
+    'NOTHING_TO_DO' => 'Nothing to do. Cool!',
+    'SOON' => 'Soon',
 
-'PAST_DUE'=>'Past due', // app_calendar/usual_list.html; 
-'TODAY'=>'Today', // app_calendar/usual_list.html; 
 
+    'DONE_RECENTLY' => 'Recently done',
+    'PREVIEW' => 'Preview',
 
-'NOTHING_TO_DO'=>'Nothing to do. Cool!', // app_calendar/usual_list.html; 
-'SOON'=>'Soon', // app_calendar/usual_list.html; 
 
+    'SYSTEM_NAME' => 'System name',
+    'EVENT' => 'Event',
+    'TASK' => 'Task',
+    'DONE' => 'Done',
+    'DATE' => 'Date',
 
-'DONE_RECENTLY'=>'Recently done', // app_calendar/usual_list.html; 
-'PREVIEW'=>'Preview', // app_calendar/action_admin.html; scenes/scenes_search_admin.html; 
 
+    'NO_DUE_DATE' => 'no due date',
 
-'SYSTEM_NAME'=>'System name', // app_calendar/usual_edit.html; terminals/terminals_edit.html; terminals/terminals_search_admin.html; 
-'EVENT'=>'Event', // app_calendar/usual_edit.html; 
-'TASK'=>'Task', // app_calendar/usual_edit.html; 
-'DONE'=>'Done', // app_calendar/usual_edit.html; 
-'DATE'=>'Date', // app_calendar/usual_edit.html; app_products/products_edit_history.html; 
 
+    'IS_REPEATING' => 'repeating',
+    'YEARLY' => 'Yearly',
+    'MONTHLY' => 'Monthly',
+    'WEEKLY' => 'Weekly',
+    'OTHER' => 'Other',
 
-'NO_DUE_DATE'=>'no due date', // app_calendar/usual_edit.html; 
 
+    'RESTORE_IN' => 'Restore in',
 
-'IS_REPEATING'=>'repeating', // app_calendar/usual_edit.html; 
-'YEARLY'=>'Yearly', // app_calendar/usual_edit.html; 
-'MONTHLY'=>'Monthly', // app_calendar/usual_edit.html; 
-'WEEKLY'=>'Weekly', // app_calendar/usual_edit.html; 
-'OTHER'=>'Other', // app_calendar/usual_edit.html; 
 
+    'IN_DAYS' => 'days',
 
-'RESTORE_IN'=>'Restore in', // app_calendar/usual_edit.html; 
 
+    'AFTER_COMPLETION' => 'after completion',
 
-'IN_DAYS'=>'days', // app_calendar/usual_edit.html; 
 
+    'MORE_DETAILS' => 'More details',
 
-'AFTER_COMPLETION'=>'after completion', // app_calendar/usual_edit.html; 
 
+    'ANY_USER' => 'Any user',
+    'ANY_LOCATION' => 'Any location',
 
-'MORE_DETAILS'=>'More details', // app_calendar/usual_edit.html; 
 
+    'RUN_SCRIPT' => 'Run script',
 
-'ANY_USER'=>'Any user', // app_calendar/usual_edit.html; 
-'ANY_LOCATION'=>'Any location', // app_calendar/usual_edit.html; 
 
+    'WHEN_TASK_WILL_BE_DONE' => 'when task will be done',
 
-'RUN_SCRIPT'=>'Run script', // app_calendar/usual_edit.html; 
 
+    'SIMILAR_ITEMS' => 'Similar items',
 
-'WHEN_TASK_WILL_BE_DONE'=>'when task will be done', // app_calendar/usual_edit.html; 
 
+    'LOCATION_CODE' => 'Location code (city id)',
+    'REFRESH' => 'Refresh',
 
-'SIMILAR_ITEMS'=>'Similar items', // app_calendar/usual_edit.html; 
 
+    'ERROR_GETTING_WEATHER_DATA' => 'Error getting weather data',
 
-'LOCATION_CODE'=>'Location code (city id)', // app_weather/action_admin.html; 
-'REFRESH'=>'Refresh', // app_weather/action_admin.html; 
 
+    'CLEAR_ALL' => 'Clear all',
 
-'ERROR_GETTING_WEATHER_DATA'=>'Error getting weather data', // app_weather/action_usual.html; 
 
+    'ADD_NEW_CHANNEL' => 'Add new channel',
 
-'CLEAR_ALL'=>'Clear all', // rss_channels/rss_items_search_admin.html; 
 
+    'LAST_CHECKED' => 'Last checked',
 
-'ADD_NEW_CHANNEL'=>'Add new channel', // rss_channels/rss_channels_search_admin.html; 
 
+    'RSS_CHANNELS' => 'RSS channels',
+    'RSS_NEWS' => 'RSS news',
 
-'LAST_CHECKED'=>'Last checked', // rss_channels/rss_channels_search_admin.html; 
 
+    'NEW_CHANNEL' => 'New channel',
 
-'RSS_CHANNELS'=>'RSS channels', // rss_channels/action_admin.html; rss_channels/action_admin.html; 
-'RSS_NEWS'=>'RSS news', // rss_channels/action_admin.html; rss_channels/action_admin.html; 
 
+    'SOURCE_URL' => 'Source URL',
 
-'NEW_CHANNEL'=>'New channel', // rss_channels/rss_channels_edit_default.html; 
 
+    'CHECK_EVERY' => 'Check every',
 
-'SOURCE_URL'=>'Source URL', // rss_channels/rss_channels_edit_default.html; 
 
+    'EXECUTE_FOR_NEW_RECORDS' => 'Execute for new records',
 
-'CHECK_EVERY'=>'Check every', // rss_channels/rss_channels_edit_default.html; 
 
+    'TERMINAL_FROM' => 'From terminal',
 
-'EXECUTE_FOR_NEW_RECORDS'=>'Execute for new records', // rss_channels/rss_channels_edit_default.html; 
 
+    'USER_FROM' => 'From user',
+    'USER_TO' => 'To user',
+    'WINDOW' => 'Window',
+    'EXPIRE' => 'Expire',
 
-'TERMINAL_FROM'=>'From terminal', // events/events_search_admin.html; events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; 
 
+    'TERMINAL_TO' => 'To terminal',
 
-'USER_FROM'=>'From user', // events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; 
-'USER_TO'=>'To user', // events/events_search_admin.html; events/action_addevent.html; events/events_edit.html; events/events_search_site.html; 
-'WINDOW'=>'Window', // events/events_search_admin.html; events/action_addevent.html; events/events_edit.html; events/events_search_site.html; 
-'EXPIRE'=>'Expire', // events/events_search_admin.html; events/events_edit.html; events/events_search_site.html; 
 
+    'NEW_PAGE' => 'New page',
+    'APP' => 'Application',
+    'QUANTITY' => 'Qty',
+    'ACTION' => 'Action',
+    'CATEGORY' => 'Category',
+    'ADD_NEW_CATEGORY' => 'Add new category',
+    'PRODUCT' => 'Product',
 
-'TERMINAL_TO'=>'To terminal', // events/action_addevent.html; events/events_edit.html; events/events_search_site.html; 
 
+    'DELETE_CATEGORY' => 'Delete category',
+    'MISSING' => 'Missing',
 
-'NEW_PAGE'=>'New page', // layouts/layouts_search_admin.html; 
-'APP'=>'Application', // layouts/layouts_edit.html; 
-'QUANTITY'=>'Qty', // app_products/products_edit_history.html; app_products/products_search_admin.html; app_products/products_edit_default.html; 
-'ACTION'=>'Action', // app_products/products_edit_history.html; 
-'CATEGORY'=>'Category', // app_products/all_products.html; app_products/all_products.html; app_products/products_edit_default.html; 
-'ADD_NEW_CATEGORY'=>'Add new category',
-'PRODUCT'=>'Product', // app_products/all_products.html; 
 
+    'IN_STORAGE' => 'In storage',
+    'BUY' => 'Buy',
+    'CODES' => 'Codes',
+    'PARENT' => 'Parent',
+    'ROOT' => 'ROOT',
 
-'DELETE_CATEGORY'=>'Delete category', // app_products/all_products.html; 
-'MISSING'=>'Missing', // app_products/all_products.html; app_products/products_search_admin.html; 
 
+    'CREATE_NOTE' => 'Create note',
+    'TOTAL' => 'Total',
 
-'IN_STORAGE'=>'In storage', // app_products/all_products.html; 
-'BUY'=>'Buy', // app_products/all_products.html; 
-'CODES'=>'Codes', // app_products/action_mobile.html; app_products/action_admin.html; app_products/action_usual.html; 
-'PARENT'=>'Parent', // app_products/product_categories_edit.html; 
-'ROOT'=>'ROOT', // app_products/product_categories_edit.html; 
 
+    'EXPIRE_IN' => 'Expire in',
+    'DAYS' => 'days',
+    'CATEGORIES' => 'Categories',
 
-'CREATE_NOTE'=>'Create note', // app_products/shoplist.html; 
-'TOTAL'=>'Total', // app_products/products_search_admin.html; 
 
+    'ALL_PRODUCTS' => 'All products',
+    'EXPIRED' => 'Expired',
 
-'EXPIRE_IN'=>'Expire in', // app_products/products_search_admin.html; 
-'DAYS'=>'days', // app_products/products_search_admin.html; app_products/products_edit_default.html; 
-'CATEGORIES'=>'Categories', // app_products/products_search_admin.html; app_products/action_admin.html; app_products/action_usual.html; 
 
+    'SHOPPING_LIST' => 'Shopping',
+    'PRODUCTS' => 'Products',
+    'IMAGE' => 'Image',
 
-'ALL_PRODUCTS'=>'All products', // app_products/products_search_admin.html; 
-'EXPIRED'=>'Expired', // app_products/products_search_admin.html; app_products/products_search_admin.html; 
 
+    'EXPIRATION_DATE' => 'Expiration date',
 
-'SHOPPING_LIST'=>'Shopping', // app_products/products_search_admin.html; app_products/action_usual.html; 
-'PRODUCTS'=>'Products', // app_products/action_admin.html; app_products/action_admin.html; app_products/action_admin.html; app_products/action_usual.html; 
-'IMAGE'=>'Image', // app_products/products_edit_default.html; scenes/elements_edit.html; scenes/elements_edit.html; 
 
+    'DEFAULT_EXPIRE_IN' => 'Default "expire in"',
+    'UPDATED' => 'Updated',
 
-'EXPIRATION_DATE'=>'Expiration date', // app_products/products_edit_default.html; 
 
+    'RECOMENDED_QUANTITY' => 'Recommended Qty',
 
-'DEFAULT_EXPIRE_IN'=>'Default "expire in"', // app_products/products_edit_default.html; 
-'UPDATED'=>'Updated', // app_products/products_edit_default.html; onewire/onewire_edit.html; app_gpstrack/gpsdevices_search_admin.html; 
 
+    'DELETE_FROM_DATABASE' => 'DELETE FROM database',
 
-'RECOMENDED_QUANTITY'=>'Recommended Qty', // app_products/products_edit_default.html; 
 
+    'RESCAN_DEVICES' => 'Rescan devices',
 
-'DELETE_FROM_DATABASE'=>'Delete from database', // app_products/products_edit_default.html; 
 
+    'NO_DEVICES_FOUND' => 'No devices found',
+    'ID' => 'ID',
 
-'RESCAN_DEVICES'=>'Rescan devices', // onewire/onewire_search_admin.html; 
 
+    'CHECK_INTERVAL' => 'Check interval',
 
-'NO_DEVICES_FOUND'=>'No devices found', // onewire/onewire_search_admin.html; 
-'ID'=>'ID', // onewire/onewire_edit.html; 
 
+    'LINKED_OBJECT' => 'Linked object',
+    'LINKED_PROPERTY' => 'Linked property',
+    'SET' => 'set',
 
-'CHECK_INTERVAL'=>'Check interval', // onewire/onewire_edit.html; watchfolders/watchfolders_edit.html; webvars/webvars_edit.html; 
 
+    'ONCHANGE_ACTION' => 'On change action',
+    'RESET' => 'Reset',
 
-'LINKED_OBJECT'=>'Linked object', // onewire/onewire_edit.html; webvars/webvars_edit.html; 
-'LINKED_PROPERTY'=>'Linked property', // onewire/onewire_edit.html; 
-'SET'=>'set', // onewire/onewire_edit.html; 
 
+    'MORE_INFO' => 'More info',
+    'PATH' => 'Path',
 
-'ONCHANGE_ACTION'=>'On change action', // onewire/onewire_edit.html; webvars/webvars_edit.html; 
-'RESET'=>'Reset', // app_tdwiki/action_admin.html; 
 
+    'INCLUDE_SUBFOLDERS' => 'include sub-folders',
 
-'MORE_INFO'=>'More info', // app_tdwiki/tdwiki_search_admin.html; app_tdwiki/tdwiki_search_site.html; 
-'PATH'=>'Path', // watchfolders/watchfolders_edit.html; app_mediabrowser/action_admin.html; 
 
+    'CHECK_MASK' => 'Check mask',
+    'EXAMPLE' => 'Example',
 
-'INCLUDE_SUBFOLDERS'=>'include sub-folders', // watchfolders/watchfolders_edit.html; 
 
+    'AUTHORIZATION_REQUIRED' => 'authorization required',
+    'PASSWORD' => 'Password',
 
-'CHECK_MASK'=>'Check mask', // watchfolders/watchfolders_edit.html; 
-'EXAMPLE'=>'Example', // watchfolders/watchfolders_edit.html; scenes/elements_edit.html; 
 
+    'SOURCE_PAGE_ENCODING' => 'Source page encoding',
+    'OPTIONAL' => 'optional',
 
-'AUTHORIZATION_REQUIRED'=>'authorization required', // webvars/webvars_edit.html; 
-'PASSWORD'=>'Password', // webvars/webvars_edit.html; 
 
+    'BY_DEFAULT' => 'by default',
 
-'SOURCE_PAGE_ENCODING'=>'Source page encoding', // webvars/webvars_edit.html; 
-'OPTIONAL'=>'optional', // webvars/webvars_edit.html; 
 
+    'SEARCH_PATTERN' => 'Search pattern',
 
-'BY_DEFAULT'=>'by default', // webvars/webvars_edit.html; 
 
+    'LATEST_VALUE' => 'Latest value',
 
-'SEARCH_PATTERN'=>'Search pattern', // webvars/webvars_edit.html; 
 
+    'ADD_NEW' => 'Add new',
 
-'LATEST_VALUE'=>'Latest value', // webvars/webvars_edit.html; 
 
+    'REFRESH_ALL' => 'Refresh all',
 
-'ADD_NEW'=>'Add new', // webvars/webvars_search_admin.html; 
 
+    'NEW_PROPERTY' => 'New property',
 
-'REFRESH_ALL'=>'Refresh all', // webvars/webvars_search_admin.html; 
 
+    'KEEP_HISTORY_DAYS' => 'Keep history (days)',
 
-'NEW_PROPERTY'=>'New property', // properties/properties_edit.html; 
 
+    'DO_NOT_KEEP' => 'do not keep history',
+    'KEEP_HISTORY' => 'keep history',
 
-'KEEP_HISTORY_DAYS'=>'Keep history (days)', // properties/properties_edit.html; 
 
+    'PARENT_PROPERTIES' => 'Parent properties',
 
-'DO_NOT_KEEP'=>'do not keep history', // properties/properties_edit.html; 
 
+    'ADD_NEW_COLLECTION' => 'Add new collection',
 
-'PARENT_PROPERTIES'=>'Parent properties', // properties/properties_search_admin.html; 
 
+    'NEW_SKIN_INSTALLED' => 'New skin installed',
 
-'ADD_NEW_COLLECTION'=>'Add new collection', // app_mediabrowser/action_admin.html; 
 
+    'INCORRECT_FILE_FORMAT' => 'Incorrect file format',
 
-'NEW_SKIN_INSTALLED'=>'New skin installed', // skins/action_admin.html; 
 
+    'CANNOT_CREATE_FOLDER' => 'Cannot create folder',
 
-'INCORRECT_FILE_FORMAT'=>'Incorrect file format', // skins/action_admin.html; 
 
+    'SKIN_ALREADY_EXISTS' => 'Skin already exists',
 
-'CANNOT_CREATE_FOLDER'=>'Cannot create folder', // skins/action_admin.html; 
 
+    'UPLOAD_NEW_SKIN' => 'Upload new skin',
 
-'SKIN_ALREADY_EXISTS'=>'Skin already exists', // skins/action_admin.html; 
 
+    'INSTALL_SKIN' => 'Install skin',
 
-'UPLOAD_NEW_SKIN'=>'Upload new skin', // skins/action_admin.html; 
 
+    'NO_ADDITIONAL_SKINS_INSTALLED' => 'No additional skins installed',
+    'BACKGROUND' => 'Background image',
 
-'INSTALL_SKIN'=>'Install skin', // skins/action_admin.html; 
 
+    'SCENE' => 'Scene',
+    'ADD_NEW_SCENE' => 'Add new scene',
+    'USE_ELEMENT_TO_POSITION_RELATED' => 'Use element to position related',
+    'NO_RELATED' => 'None, position from top left corner',
+    'TOP' => 'Top',
+    'LEFT' => 'Left',
+    'STATES' => 'States',
+    'ADD_NEW_STATE' => 'Add new state',
 
-'NO_ADDITIONAL_SKINS_INSTALLED'=>'No additional skins installed', // skins/action_admin.html; 
-'BACKGROUND'=>'Background image', // scenes/scenes_edit_default.html; 
 
+    'RUN_SCRIPT_ON_CLICK' => 'Run script on click',
+    'SHOW_MENU_ON_CLICK' => 'Show menu on click',
+    'SHOW_HOMEPAGE_ON_CLICK' => 'Show page on click',
+    'SHOW_URL_ON_CLICK' => 'Show URL on click',
+    'SHOW_SCENE_ON_CLICK' => 'Show other scene',
 
-'SCENE'=>'Scene',
-'ADD_NEW_SCENE'=>'Add new scene', // scenes/scenes_search_admin.html; 
-'TOP'=>'Top', // scenes/elements_edit.html; 
-'LEFT'=>'Left', // scenes/elements_edit.html; 
-'STATES'=>'States', // scenes/elements_edit.html; 
-'ADD_NEW_STATE'=>'Add new state', // scenes/elements_edit.html; scenes/elements_edit.html; 
 
+    'DISPLAY_CONDITION' => 'Display condition',
 
-'RUN_SCCRIPT_ON_CLICK'=>'Run script on click', // scenes/elements_edit.html; 
-'SHOW_MENU_ON_CLICK'=>'Show menu on click',
 
+    'ALWAYS_VISIBLE' => 'always visible',
+    'SIMPLE' => 'simple',
+    'ADVANCED' => 'advanced',
 
-'DISPLAY_CONDITION'=>'Display condition', // scenes/elements_edit.html; 
 
+    'SWITCH_SCENE_WHEN_ACTIVATED' => 'switch scene when activated',
+    'APPEAR_ANIMATION' => 'Appear animation',
+    'APPEAR_LEFTTORIGHT' => 'Left-to-Right',
+    'APPEAR_RIGHTTOLEFT' => 'Right-to-Left',
+    'APPEAR_TOPTOBOTTOM' => 'Top-to-Bottom',
+    'APPEAR_BOTTOMTOTOP' => 'Bottom-to-Top',
+    'APPEAR_BLINK' => 'Blink',
+    'APPEAR_SCALE' => 'Scale',
 
-'ALWAYS_VISIBLE'=>'always visible', // scenes/elements_edit.html; 
-'SIMPLE'=>'simple', // scenes/elements_edit.html; 
-'ADVANCED'=>'advanced', // scenes/elements_edit.html; 
 
+    'ADD_NEW_ELEMENT' => 'Add new element',
+    'ELEMENTS' => 'Elements',
 
-'SWITCH_SCENE_WHEN_ACTIVATED'=>'switch scene when activated', // scenes/elements_edit.html; 
 
+    'CAN_PLAY_MEDIA' => 'can play media',
+    'CAN_TTS' => 'can receive notification messages',
+    'MIN_MSG_LEVEL' => 'Minimum message importance level',
 
-'ADD_NEW_ELEMENT'=>'Add new element', // scenes/elements_search_admin.html; 
-'ELEMENTS'=>'Elements', // scenes/action_admin.html; 
 
+    'PLAYER_TYPE' => 'Player type',
+    'DEFAULT' => 'Default',
 
-'CAN_PLAY_MEDIA'=>'can play media', // terminals/terminals_edit.html; 
 
+    'MAKE_SURE_YOU_HAVE_CONTROL_OVER_HTTP_ENABLED' => 'Make sure you have control over HTTP enabled',
 
-'PLAYER_TYPE'=>'Player type', // terminals/terminals_edit.html; 
-'DEFAULT'=>'Default', // terminals/terminals_edit.html; 
 
+    'PLAYER_PORT' => 'Player access port',
+    'PLAYER_USERNAME' => 'Player access username',
+    'PLAYER_PASSWORD' => 'Player access password',
+    'DEVICE' => 'Device',
 
-'MAKE_SURE_YOU_HAVE_CONTROL_OVER_HTTP_ENABLED'=>'Make sure you have control over HTTP enabled', // terminals/terminals_edit.html; 
 
+    'CLEAR_LOG' => 'Clear log',
 
-'PLAYER_PORT'=>'Player access port', // terminals/terminals_edit.html; 
-'PLAYER_USERNAME'=>'Player access username', // terminals/terminals_edit.html; 
-'PLAYER_PASSWORD'=>'Player access password', // terminals/terminals_edit.html; 
-'DEVICE'=>'Device', // app_gpstrack/gpsdevices_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpslog_edit.html; 
 
+    'OPTIMIZE_LOG' => 'Optimize log',
+    'LATITUDE' => 'Latitude',
+    'LONGITUDE' => 'Longitude',
+    'SPEED' => 'Speed',
+    'ACCURACY' => 'Accuracy',
 
-'CLEAR_LOG'=>'Clear log', // app_gpstrack/gpslog_search_admin.html; 
 
+    'BATTERY_LEVEL' => 'Battery level',
+    'CHARGING' => 'Charging',
+    'MAP' => 'Map',
+    'RANGE' => 'Range',
+    'ALTITUDE' => 'Altitude',
+    'PROVIDER' => 'Provider',
 
-'OPTIMIZE_LOG'=>'Optimize log', // app_gpstrack/gpslog_search_admin.html; 
-'LATITUDE'=>'Latitude', // app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpslocations_edit.html; 
-'LONGITUDE'=>'Longitude', // app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpslog_edit.html; app_gpstrack/gpslocations_edit.html; 
-'SPEED'=>'Speed', // app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; 
-'ACCURACY'=>'Accuracy', // app_gpstrack/gpslog_search_admin.html; 
+    'LOCATIONS' => 'Locations',
+    'DEVICES' => 'Devices',
+    'ACTIONS' => 'Actions',
+    'HOME_LOCATION' => 'Home location',
 
 
-'BATTERY_LEVEL'=>'Battery level', // app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; 
-'CHARGING'=>'Charging', // app_gpstrack/gpslog_search_admin.html; app_gpstrack/gpslog_edit.html; 
-'MAP'=>'Map', // app_gpstrack/gpslog_search_admin.html; 
-'RANGE'=>'Range', // app_gpstrack/gpslocations_search_admin.html; app_gpstrack/gpslocations_edit.html; 
-'ALTITUDE'=>'Altitude', // app_gpstrack/gpslog_edit.html; 
-'PROVIDER'=>'Provider', // app_gpstrack/gpslog_edit.html; 
+    'ACTION_TYPE' => 'Action type',
+    'EXECUTED' => 'Executed',
 
-'LOCATIONS'=>'Locations', // app_gpstrack/action_admin.html; app_gpstrack/action_admin.html; 
-'DEVICES'=>'Devices', // app_gpstrack/action_admin.html; app_gpstrack/action_admin.html; 
-'ACTIONS'=>'Actions', // app_gpstrack/action_admin.html; app_gpstrack/action_admin.html; 
+    'VIRTUAL_USER' => 'Virtual User',
 
+    'WIND' => 'Wind',
+    'PRESSURE' => 'Pressure',
+    'HUMIDITY' => 'Humidity',
+    'GET_AT' => 'get at',
+    'MMHG' => 'mmhg',
+    'HPA' => 'hpa',
+    'M_S' => 'm/s',
+    'N' => 'N',
+    'NNE' => 'NNE',
+    'NE' => 'NE',
+    'ENE' => 'ENE',
+    'E' => 'E',
+    'ESE' => 'ESE',
+    'SE' => 'SE',
+    'SSE' => 'SSE',
+    'S' => 'S',
+    'SSW' => 'SSW',
+    'SW' => 'SW',
+    'WSW' => 'WSW',
+    'W' => 'W',
+    'WNW' => 'WNW',
+    'NW' => 'NW',
+    'NNW' => 'NNW',
 
-'ACTION_TYPE'=>'Action type', // app_gpstrack/gpsactions_edit.html; app_gpstrack/gpsactions_search_admin.html; 
-'EXECUTED'=>'Executed', // app_gpstrack/gpsactions_edit.html; app_gpstrack/gpsactions_search_admin.html; 
+    'LONG_OPERATION_WARNING' => 'Note: This operation can take up to few minutes.<Br>Please, be patient :)',
 
-'VIRTUAL_USER'=>'Virtual User', // app_gpstrack/gpslocations_edit.html; 
+    'STARRED' => 'Starred',
 
-'LONG_OPERATION_WARNING'=>'Note: This operation can take up to few minutes.<Br>Please, be patient :)',
+    'USE_BACKGROUND' => 'Use background',
+    'YES' => 'Yes',
+    'NO' => 'No',
+    'USE_JAVASCRIPT' => 'Add custom JavaScript',
+    'USE_CSS' => 'Add custom CSS',
 
-'STARRED'=>'Starred',
+    'PERIOD' => 'Period',
+    'PERIOD_TODAY' => 'Today',
+    'PERIOD_DAY' => 'Day (24 hours)',
+    'PERIOD_WEEK' => 'Week',
+    'PERIOD_MONTH' => 'Month',
+    'PERIOD_CUSTOM' => 'Custom',
+    'SEARCH' => 'Search',
+    'SHOWHIDE' => 'Show/hide',
 
-'USE_BACKGROUND'=>'Use background',
-'YES'=>'Yes',
-'NO'=>'No',
-'USE_JAVASCRIPT'=>'Add custom JavaScript',
-'USE_CSS'=>'Add custom CSS',
+    'AUTO_UPDATE' => 'Auto update',
+    'CHANNEL' => 'Channel',
+    'ADD_URL' => 'Add URL',
+    'OPEN' => 'Open',
+    'SEND_TO_HOME' => 'Send home',
 
-'PERIOD'=>'Period',
-'PERIOD_TODAY'=>'Today',
-'PERIOD_DAY'=>'Day (24 hours)',
-'PERIOD_WEEK'=>'Week',
-'PERIOD_MONTH'=>'Month',
-'PERIOD_CUSTOM'=>'Custom',
-'SEARCH'=>'Search',
-'SHOWHIDE'=>'Show/hide',
+    'EXT_ID' => 'Use item',
+    'VISIBLE_DELAY' => 'Rotation delay',
 
-'AUTO_UPDATE'=>'Auto update',
-'CHANNEL'=>'Channel',
-'ADD_URL'=>'Add URL',
-'OPEN'=>'Open',
-'SEND_TO_HOME'=>'Send home',
+    'TREE_VIEW' => 'Tree View',
+    'LIST_VIEW' => 'List View',
 
-'EXT_ID'=>'Use item',
-'VISIBLE_DELAY'=>'Rotation delay',
+    'FILTER_BY_CLASS' => 'Filter by Class',
+    'FILTER_BY_LOCATION' => 'Filter by Location',
 
-'TREE_VIEW'=>'Tree View',
-'LIST_VIEW'=>'List View',
+    'PHOTO' => 'Photo',
+    'DEFAULT_USER' => 'default user for anonymous usage',
+    'IS_ADMIN' => 'system administrator',
 
-'FILTER_BY_CLASS'=>'Filter by Class',
-'FILTER_BY_LOCATION'=>'Filter by Location',
+    'COUNTER_REQUIRED' => 'Tries before switching status',
+    'COUNTER_REQUIRED_COMMENT' => '(0 to switch from the first success/fail)',
 
-'PHOTO'=>'Photo',
-'DEFAULT_USER'=>'default user for anonymous usage',
-'IS_ADMIN'=>'system administrator',
+    'ACCESS_CONTROL' => 'Access control',
 
-'COUNTER_REQUIRED'=>'Tries before switching status',
-'COUNTER_REQUIRED_COMMENT'=>'(0 to switch from the first success/fail)',
+    'SECURITY_OBJECT_ID' => 'Object ID',
+    'SECURITY_TERMINALS' => 'Access from terminals',
+    'SECURITY_USERS' => 'Available for users',
+    'SECURITY_TIMES' => 'Available during hours',
+    'ALLOW_EXCEPT_ABOVE' => 'Always available except selected above',
 
-'ACCESS_CONTROL'=>'Access control',
+    'INLINE_POSITION' => 'Place in-line with previuos element',
+    'SUB_PRELOAD' => 'Preload sub-elements in hidden area',
 
-'SECURITY_OBJECT_ID'=>'Object ID',
-'SECURITY_TERMINALS'=>'Access from terminals',
-'SECURITY_USERS'=>'Available for users',
-'SECURITY_TIMES'=>'Available during hours',
-'ALLOW_EXCEPT_ABOVE'=>'Always available except selected above',
+    'RUN_PERIODICALLY' => 'Run periodically',
+    'RUN_TIME' => 'Run time',
+    'RUN_WEEKDAYS' => 'Weekdays',
+    'WEEK_SUN' => 'Sunday',
+    'WEEK_MON' => 'Monday',
+    'WEEK_TUE' => 'Tuesday',
+    'WEEK_WED' => 'Wednesday',
+    'WEEK_THU' => 'Thursday',
+    'WEEK_FRI' => 'Friday',
+    'WEEK_SAT' => 'Saturday',
 
-'INLINE_POSITION'=>'Place in-line with previuos element',
-'SUB_PRELOAD'=>'Preload sub-elements in hidden area',
+    'PARENT_CONTEXT' => 'Parent context',
+    'IS_CONTEXT' => 'is context',
+    'TIMEOUT' => 'Timeout',
+    'SET_CONTEXT_TIMEOUT' => 'Switch to on timeout',
+    'TIMEOUT_CODE' => 'Execute on timeout',
+    'GLOBAL_CONTEXT' => 'Global context',
+    'LAST_RULE' => 'do not check other patterns when matched',
 
-'RUN_PERIODICALLY'=>'Run periodically',
-'RUN_TIME'=>'Run time',
-'RUN_WEEKDAYS'=>'Weekdays',
-'WEEK_SUN'=>'Sunday',
-'WEEK_MON'=>'Monday',
-'WEEK_TUE'=>'Tuesday',
-'WEEK_WED'=>'Wednesday',
-'WEEK_THU'=>'Thursday',
-'WEEK_FRI'=>'Friday',
-'WEEK_SAT'=>'Saturday',
+    'SETTINGS_SECTION_' => 'General',
+    'SETTINGS_SECTION_HOOK' => 'Hooks',
 
-'PARENT_CONTEXT'=>'Parent context',
-'IS_CONTEXT'=>'is context',
-'TIMEOUT'=>'Timeout',
-'SET_CONTEXT_TIMEOUT'=>'Switch to on timeout',
-'TIMEOUT_CODE'=>'Execute on timeout',
-'GLOBAL_CONTEXT'=>'Global context',
-'LAST_RULE'=>'do not check other patterns when matched',
+    'DEVICE_ID' => 'Device ID',
+    'REQUEST_TYPE' => 'Request type',
+    'REQUEST_START' => 'Start address',
+    'REQUEST_TOTAL' => 'Items to read',
+    'RESPONSE_CONVERT' => 'Data conversion',
+    'CHECK_NEXT' => 'Next check',
 
-'SETTINGS_SECTION_'=>'General',
-'SETTINGS_SECTION_HOOK'=>'Hooks',
+    'CODE_TYPE' => 'Use for scripting',
 
-'DEVICE_ID'=>'Device ID',
-'REQUEST_TYPE'=>'Request type',
-'REQUEST_START'=>'Start address',
-'REQUEST_TOTAL'=>'Items to read',
-'RESPONSE_CONVERT'=>'Data conversion',
-'CHECK_NEXT'=>'Next check',
+    'GENERAL' => 'General',
+    'TIME' => 'Time',
+    'LOGIC' => 'Logic',
+    'LOOPS' => 'Loops',
+    'MATH' => 'Math',
+    'TEXT' => 'Text',
+    'LISTS' => 'Lists',
+    'VARIABLES' => 'Variables',
+    'FUNCTIONS' => 'Functions',
 
-'TEST'=>'test'
+    'SCENE_HIDDEN' => 'Do not include in to the swappable list of scenes',
+    'SCENE_AUTO_SCALE' => 'Auto zoom scene to device with',
 
+    'DO_NOTHING' => 'Do nothing',
+    'DO_ONCLICK' => 'On click',
+    'STYLE' => 'Style',
+    'PLACE_IN_CONTAINER' => 'Place in container',
+    'POSITION_TYPE' => 'Positioning',
+    'POSITION_TYPE_ABSOLUTE' => 'Absolute',
+    'POSITION_TYPE_SIDE' => 'Side by side',
 
-/* end module names */
+    'CONTAINER' => 'Container',
+    'INFORMER' => 'Informer',
+    'NAV_LINK' => 'Nav. link (window)',
+
+    'TOOLS' => 'Tools',
+    'COLOR' => 'Color',
+    'WALLPAPER' => 'Wallpaper',
+
+    'WARNING' => 'Warning',
+    'NAV_LINK_GO' => 'Nav. link',
+    'MODE_SWITCH' => 'Mode switch',
+    'ADDITIONAL_STATES' => 'Additional states',
+    'HIGH_ABOVE' => 'Value high above',
+    'LOW_BELOW' => 'Value low below',
+    'ADDITIONAL_STATES_NOTE' => '(you can use %object.property% for the limits)',
+    'UNIT' => 'Unit',
+    'COUNTER' => 'Counter',
+    'USE_CLASS_SETTINGS' => 'use class settings',
+
+    'USING_LATEST_VERSION' => 'You are using the latest version!',
+    'LATEST_UPDATES' => 'Latest updates',
+    'UPDATE_TO_THE_LATEST' => 'Update to the latest code',
+    'SAVE_BACKUP' => 'Save Backup',
+    'CREATE_BACKUP' => 'Create Backup',
+    'UPLOAD_BACKUP' => 'Upload backup/updates',
+    'CONTINUE' => 'Continue',
+    'RESTORE' => 'Restore',
+    'SHOW' => 'Show',
+    'HIDE' => 'Hide',
+    'UPDATING' => 'Incl. in updates',
+    'NOT_UPDATING' => 'Not updating',
+
+    'SCRIPTS' => 'Scripts',
+    'CLASSES' => 'Classes',
+    'CLASS_PROPERTIES' => 'Class properties',
+    'CLASS_METHODS' => 'Class methods',
+    'CLASS_OBJECTS' => 'Class objects',
+    'OBJECT_PROPERTIES' => 'Object properties',
+    'OBJECT_METHODS' => 'Object methods',
+    'PORT' => 'Port',
+    'USE_DEFAULT' => 'use default',
+
+    'FAVORITES' => 'Favorites',
+    'RECENTLY_PLAYED' => 'Recently played',
+    'CLEAR_FAVORITES' => 'Clear Favorites',
+    'CLEAR_HISTORY' => 'Clear Recently played',
+
+    'SKIP_SYSTEM' => 'Skip system messages',
+    'ONETIME_PATTERN' => 'One-time pattern',
+
+    'PATTERN_ENTER' => 'enter',
+    'PATTERN_EXIT' => 'exit',
+    'PATTERN_TYPE' => 'Pattern type',
+    'PATTERN_MESSAGE' => 'Message-based',
+    'PATTERN_CONDITIONAL' => 'Conditional',
+    'CONDITION' => 'Condition',
+    'ADD_EXIT_CODE' => 'Add "exit" code',
+    'SMART_REPEAT' => 'Smart Repeat',
+    'READ_ONLY' => 'Read Only',
+    'ADVANCED_CONFIG' => 'Advanced config',
+    'UPDATE_ALL_EXTENSIONS' => 'Update all extensions installed',
+    'MARKET_CATEGORY_INSTALLED' => 'Installed',
+    'MARKET_CATEGORY_OWNED' => 'Owned',
+    'MARKET_CONNECT_NOTE' => 'Please make sure you have specified correct username/password for <a href="/panel/connect.html">CONNECT</a> service.',
+
+    'SAVE_CHANGES' => 'Save changes',
+    'ADD_PANE' => 'Add Pane',
+
+    'HCB' => ' <a href="https://majordomo.smartliving.ru/Hints/',
+    'HCE' => '?skin=hint" class="wiki_hint fancybox.iframe"><i class="glyphicon glyphicon-info-sign"></i></a>',
+
+    'DATA_KEY' => 'Key data',
+    'DATA_TYPE' => 'Data type',
+    'DATA_TYPE_GENERAL' => 'General',
+    'DATA_TYPE_IMAGE' => 'Image',
+    'CLASS_TEMPLATE' => 'Template',
+
+    'MODULES_UPDATES_AVAILABLE' => 'Modules updates available',
+    'SYSTEM_UPDATES_AVAILABLE' => 'System updates available',
+    'ERRORS_SAVED' => 'Errors saved',
+
+// DEVICES
+    'DEVICES_MODULE_TITLE' => 'Simple Devices',
+
+    'DEVICES_LINKED_WARNING' => 'Please note that when linking to existing object, it will be assigned to the new class.',
+
+    'DEVICES_RELAY' => 'Relay/Switch',
+    'DEVICES_DIMMER' => 'Dimmer',
+    'DEVICES_RGB' => 'RGB-light',
+    'DEVICES_MOTION' => 'Motion sensor',
+    'DEVICES_BUTTON' => 'Button',
+    'DEVICES_SWITCH' => 'Switch',
+    'DEVICES_OPENCLOSE' => 'Open/Close sensor',
+    'DEVICES_GENERAL_SENSOR' => 'General sensor',
+    'DEVICES_TEMP_SENSOR' => 'Temperature sensor',
+    'DEVICES_HUM_SENSOR' => 'Humidity sensor',
+    'DEVICES_STATE_SENSOR' => 'State sensor',
+    'DEVICES_PERCENTAGE_SENSOR' => 'Percentage value sensor',
+    'DEVICES_PRESSURE_SENSOR' => 'Atmospheric pressure sensor',
+    'DEVICES_POWER_SENSOR' => 'Watt sensor',
+    'DEVICES_VOLTAGE_SENSOR' => 'Voltage sensor',
+    'DEVICES_CURRENT_SENSOR' => 'Current sensor',
+    'DEVICES_LIGHT_SENSOR' => 'Light sensor',
+    'DEVICES_LEAK_SENSOR' => 'Leak detector',
+    'DEVICES_SMOKE_SENSOR' => 'Smoke detector',
+    'DEVICES_UNIT' => 'Units',
+    'DEVICES_COUNTER' => 'Meter/Counter',
+    'DEVICES_BATTERY_LOW' => 'Low battery',
+// Measure
+    'M_VOLTAGE' => 'V',
+    'M_CURRENT' => 'I',
+    'M_PRESSURE' => 'Tor',
+    'M_WATT' => 'W',
+
+//----
+    'DEVICES_LINKS' => 'Linked devices',
+
+    'DEVICES_STATUS' => 'Status',
+
+    'DEVICES_LOGIC_ACTION' => 'Action',
+
+    'DEVICES_CURRENT_VALUE' => 'Current value',
+    'DEVICES_CURRENT_HUMIDITY' => 'Humidity',
+    'DEVICES_CURRENT_TEMPERATURE' => 'Temperature',
+
+    'DEVICES_MIN_VALUE' => 'Minimum value',
+    'DEVICES_MAX_VALUE' => 'Maximum value',
+    'DEVICES_NOTIFY' => 'Notify when value out of range',
+    'DEVICES_NORMAL_VALUE' => 'Value within range',
+    'DEVICES_DIRECTION_TIMEOUT' => 'Direction tracking time period (seconds)',
+    'DEVICES_NOTIFY_STATUS' => 'Notify status',
+    'DEVICES_NOTIFY_OUTOFRANGE' => 'Value is out of normal range',
+    'DEVICES_NOTIFY_BACKTONORMAL' => 'Value is back to normal',
+    'DEVICES_NOTIFY_NOT_CLOSED' => 'Notify when left open',
+    'DEVICES_MOTION_IGNORE' => 'Ignore device events when nobody\'s home',
+    'DEVICES_MOTION_TIMEOUT' => 'Activity timeout (sec)',
+    'DEVICES_ALIVE_TIMEOUT' => 'Possible inactivity timeout (hours)',
+    'DEVICES_MAIN_SENSOR' => 'Main sensor for the room',
+
+    'DEVICES_IS_ON' => 'is ON',
+    'DEVICES_IS_CLOSED' => 'is Closed',
+    'DEVICES_NOT_UPDATING' => 'is not updating',
+
+    'DEVICES_MOTION_DETECTED' => 'Detected',
+
+    'DEVICES_PRESS' => 'Press',
+    'DEVICES_TURN_ON' => 'Turn On',
+    'DEVICES_TURN_OFF' => 'Turn Off',
+    'DEVICES_SET_COLOR' => 'Set Color',
+
+    'DEVICES_GROUP_ECO' => 'Turn it off in ECO mode',
+    'DEVICES_GROUP_ECO_ON' => 'Turn it on leaving ECO mode',
+    'DEVICES_GROUP_SUNRISE' => 'Turn it off with Sunrise',
+    'DEVICES_IS_ACTIVITY' => 'Status change means activity in the room',
+    'DEVICES_NCNO' => 'Device/Sensor type',
+    'DEVICES_LOADTYPE' => 'Device type',
+    'DEVICES_LOADTYPE_VENT' => 'Ventilation',
+    'DEVICES_LOADTYPE_HEATING' => 'Heating',
+    'DEVICES_LOADTYPE_CURTAINS' => 'Curtains',
+    'DEVICES_LOADTYPE_GATES' => 'Gates',
+    'DEVICES_LOADTYPE_LIGHT' => 'Light',
+    'DEVICES_LOADTYPE_LIGHT_ALT' => 'Light',
+    'DEVICES_LOADTYPE_POWER' => 'Other',
+
+    'DEVICES_ADD_MENU' => 'Add device to Menu',
+    'DEVICES_ADD_SCENE' => 'Add device to Scene',
+
+    'DEVICES_LINKS_NOT_ADDED' => 'No linked devices set',
+    'DEVICES_LINKS_AVAILABLE' => 'Available links',
+    'DEVICES_LINKS_COMMENT' => 'Comment (optional)',
+    'DEVICES_LINKS_LINKED_DEVICE' => 'Linked device',
+    'DEVICES_LINKS_ADDED' => 'Links added',
+
+    'DEVICES_LINK_ACTION_TYPE' => 'Action type',
+    'DEVICES_LINK_TYPE_TURN_ON' => 'Turn On',
+    'DEVICES_LINK_TYPE_TURN_OFF' => 'Turn Off',
+    'DEVICES_LINK_TYPE_SWITCH' => 'Switch',
+
+    'DEVICES_LINK_SWITCH_IT' => 'Switch it',
+    'DEVICES_LINK_SWITCH_IT_DESCRIPTION' => 'Control another devices when action triggered',
+    'DEVICES_LINK_SWITCH_IT_PARAM_ACTION_DELAY' => 'Delay (seconds)',
+
+    'DEVICES_LINK_SET_COLOR' => 'Set Color',
+    'DEVICES_LINK_SET_COLOR_DESCRIPTION' => 'Change color when action triggered',
+    'DEVICES_LINK_SET_COLOR_PARAM_ACTION_COLOR' => 'Color',
+
+
+    'DEVICES_LINK_SENSOR_SWITCH' => 'Sensor control',
+    'DEVICES_LINK_SENSOR_SWITCH_DESCRIPTION' => 'Control another devices based on sensor\'s value',
+    'DEVICES_LINK_SENSOR_SWITCH_PARAM_CONDITION' => 'Condition type',
+    'DEVICES_LINK_SENSOR_SWITCH_PARAM_CONDITION_ABOVE' => 'Above',
+    'DEVICES_LINK_SENSOR_SWITCH_PARAM_CONDITION_BELOW' => 'Below',
+    'DEVICES_LINK_SENSOR_SWITCH_PARAM_VALUE' => 'Value',
+
+    'DEVICES_LINK_SENSOR_PASS' => 'Sensor data pass',
+    'DEVICES_LINK_SENSOR_PASS_DESCRIPTION' => 'Pass sensor\'s value to another device',
+
+    'DEVICES_LINK_THERMOSTAT_SWITCH' => 'Thermostat device control',
+    'DEVICES_LINK_THERMOSTAT_SWITCH_DESCRIPTION' => 'Control another device based on thermostat status',
+    'DEVICES_LINK_THERMOSTAT_INVERT' => 'Invert device\'s status',
+
+
+    'DEVICES_UPDATE_CLASSSES' => 'Update classes',
+    'DEVICES_ADD_OBJECT_AUTOMATICALLY' => 'Add automatically',
+
+    'DEVICES_PATTERN_TURNON' => 'turn on',
+    'DEVICES_PATTERN_TURNOFF' => 'turn off',
+    'DEVICES_DEGREES' => 'degrees',
+    'DEVICES_STATUS_OPEN' => 'is open',
+    'DEVICES_STATUS_CLOSED' => 'is closed',
+    'DEVICES_STATUS_ALARM' => 'alarm state',
+    'DEVICES_COMMAND_CONFIRMATION' => 'Done|Ok',
+
+    'DEVICES_ROOMS_NOBODYHOME' => 'Nobody home',
+    'DEVICES_ROOMS_SOMEBODYHOME' => 'Somebody home',
+    'DEVICES_ROOMS_ACTIVITY' => 'Latest activity',
+
+    'DEVICES_PASSED_NOW' => 'Now',
+    'DEVICES_PASSED_SECONDS_AGO' => 'seconds ago',
+    'DEVICES_PASSED_MINUTES_AGO' => 'minutes ago',
+    'DEVICES_PASSED_HOURS_AGO' => 'hours ago',
+    'DEVICES_CHOOSE_EXISTING' => '... or choose existing device record',
+
+    'DEVICES_CAMERA' => 'IP camera',
+    'DEVICES_CAMERA_STREAM_URL' => 'Stream URL',
+    'DEVICES_CAMERA_USERNAME' => 'Camera Username',
+    'DEVICES_CAMERA_PASSWORD' => 'Camera Password',
+    'DEVICES_CAMERA_SNAPSHOT_URL' => 'Snapshot URL',
+    'DEVICES_CAMERA_SNAPSHOT' => 'Snapshot',
+    'DEVICES_CAMERA_TAKE_SNAPSHOT' => 'Take Snapshot',
+    'DEVICES_CAMERA_SNAPSHOT_HISTORY' => 'History',
+    'DEVICES_CAMERA_STREAM_TRANSPORT' => 'Stream transport',
+    'DEVICES_CAMERA_PREVIEW_TYPE' => 'Preview image',
+    'DEVICES_CAMERA_PREVIEW_TYPE_STATIC' => 'Static',
+    'DEVICES_CAMERA_PREVIEW_TYPE_SLIDESHOW' => 'Slideshow',
+    'DEVICES_CAMERA_PREVIEW_ONCLICK' => 'OnClick action',
+    'DEVICES_CAMERA_PREVIEW_ONCLICK_ENLARGE' => 'Enlarge image',
+    'DEVICES_CAMERA_PREVIEW_ONCLICK_ORIGINAL' => 'Go to stream',
+
+    'DEVICES_THERMOSTAT' => 'Thermostat',
+    'DEVICES_THERMOSTAT_MODE' => 'Mode',
+    'DEVICES_THERMOSTAT_MODE_NORMAL' => 'Normal',
+    'DEVICES_THERMOSTAT_MODE_ECO' => 'Eco',
+    'DEVICES_THERMOSTAT_MODE_OFF' => 'Off',
+    'DEVICES_THERMOSTAT_ECO_MODE' => 'ECO mode',
+    'DEVICES_THERMOSTAT_NORMAL_TEMP' => 'Normal target temperature',
+    'DEVICES_THERMOSTAT_ECO_TEMP' => 'ECO target temperature',
+    'DEVICES_THERMOSTAT_CURRENT_TEMP' => 'Current temperature',
+    'DEVICES_THERMOSTAT_CURRENT_TARGET_TEMP' => 'Current target temperature',
+    'DEVICES_THERMOSTAT_THRESHOLD' => 'Temperature threshold (0.25 by default)',
+    'DEVICES_THERMOSTAT_RELAY_STATUS' => 'Relay status',
+    'DEVICES_ALL_BY_TYPE' => 'List all by types',
+    'DEVICES_ALL_BY_ROOM' => 'List all by rooms',
+    'DEVICES_LOAD_TIMEOUT' => 'Load status timeout',
+
+    'GROUPS' => 'Groups',
+    'APPLIES_TO' => 'Applies to',
+
+    'AUTO_LINK' => 'Execute script automatically',
+    'FAVORITE_DEVICE' => 'Favorite device',
+
+    'ROOMS' => 'Rooms',
+    'APPEARANCE' => 'Appearance',
+    'MAINTENANCE' => 'Maintenance',
+    'LIST' => 'List',
+    'DATA_OPTIMIZING' => 'Data Optimizing',
+    'DID_YOU_KNOW' => 'Did you know that...',
+    'NEWS' => 'MajorDoMo News',
+    'KNOWLEDGE_BASE' => 'Knowledge Base',
+    'ACTIVITIES' => 'Activities',
+    'COMMANDS' => 'Commands',
+    'ADDON_FILE' => 'Addon package',
+    'UPLOAD_AND_INSTALL' => 'Upload and Install',
+    'ADD_UPDATE_MANUALLY' => 'Add/Update Manually',
+    'TURNING_ON' => 'Turning on',
+    'TURNING_OFF' => 'Turning off',
+
+    'THEME' => 'Theme',
+    'THEME_DARK' => 'Dark',
+    'THEME_LIGHT' => 'Light',
+    'DATA_SOURCE' => 'Data source',
+    'WIDGET' => 'Widget',
+    'PANE' => 'Pane',
+    'COLUMNS' => 'Columns',
+    'SIZE' => 'Size',
+    'CLOCK' => 'Clock',
+
+    'UPDATES_SOURCE' => 'Core updates source',
+    'UPDATES_SOURCE_MASTER' => 'Master (stable release)',
+    'UPDATES_SOURCE_ALPHA' => 'Alpha (latest updates)',
+
+    'MAINCYCLEDOWN' => 'Main cycle is down',
+    'MAINCYCLEDOWN_DETAILS' => '<b>Don\'t panic! :)</b><br/>Looks like main MajorDoMo process is stopped.<Br/>This page should reload in few seconds and if there will be error message, please proceed with following options.',
+
+    'TEST' => 'test'
+
+
+    /* end module names */
 
 
 );
 
-foreach ($dictionary as $k=>$v) {
- if (!defined('LANG_'.$k)) {
-  define('LANG_'.$k, $v);
- }
+foreach ($dictionary as $k => $v) {
+    if (!defined('LANG_' . $k)) {
+        define('LANG_' . $k, $v);
+    }
 }

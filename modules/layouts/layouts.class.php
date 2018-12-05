@@ -8,7 +8,7 @@
 * @author Serge Dzheigalo <jey@tut.by> http://smartliving.ru/
 * @version 0.2 (wizard, 18:09:58 [Sep 10, 2010])
 */
-Define('DEF_TYPE_OPTIONS', 'html=HTML Code|app=Application|url=URL'); // options for 'TYPE' //page=Page|
+Define('DEF_TYPE_OPTIONS', 'html=HTML Code|app=Application|url=URL|dashboard=Dashboard'); // options for 'TYPE' //page=Page|
 //
 //
 class layouts extends module {
@@ -19,7 +19,7 @@ class layouts extends module {
 *
 * @access private
 */
-function layouts() {
+function __construct() {
   $this->name="layouts";
   $this->title="<#LANG_MODULE_LAYOUTS#>";
   $this->module_category="<#LANG_SECTION_SETTINGS#>";
@@ -128,6 +128,16 @@ function admin(&$out) {
   $out['SET_DATASOURCE']=1;
  }
  if ($this->data_source=='layouts' || $this->data_source=='') {
+
+  if ($this->view_mode=='moveup' && $this->id) {
+   $this->reorder_items($this->id, 'up');
+   $this->redirect("?");
+  }
+  if ($this->view_mode=='movedown' && $this->id) {
+   $this->reorder_items($this->id, 'down');
+   $this->redirect("?");
+  }
+
   if ($this->view_mode=='' || $this->view_mode=='search_layouts') {
    $this->search_layouts($out);
   }
@@ -151,6 +161,24 @@ function admin(&$out) {
 * @access public
 */
 function usual(&$out) {
+ if ($this->ajax) {
+  global $op;
+  global $id;
+  if ($op=='loaddashboard') {
+   $page_rec=SQLSelectOne("SELECT * FROM layouts WHERE ID=".(int)$id);
+   echo $page_rec['DETAILS'];
+  }
+  if ($op=='savedashboard') {
+   global $data;
+   $page_rec=SQLSelectOne("SELECT * FROM layouts WHERE ID=".(int)$id);
+   $page_rec['DETAILS']=$data;
+   SQLUpdate('layouts',$page_rec);
+  }
+  exit;
+ }
+ if ($this->owner->action=='apps') {
+  $this->redirect(ROOTHTML."pages.html");
+ }
  $this->admin($out);
 }
 /**
@@ -178,9 +206,34 @@ function usual(&$out) {
 * @access public
 */
  function view_layouts(&$out, $id) {
-  $rec=SQLSelectOne("SELECT * FROM layouts WHERE ID='".(int)$id."'");
+  $rec=SQLSelectOne("SELECT * FROM layouts WHERE ID='".(int)$id."' OR TITLE LIKE '".DBSafe($id)."'");
   if (!$rec['ID']) {
-   return 0;
+   if ($id=='Panel') {
+    $rec=array();
+    $rec['TITLE']='Panel';
+    $rec['HIDDEN']=1;
+    $rec['TYPE']='dashboard';
+    $rec['ID']=SQLInsert('layouts',$rec);
+   } else {
+    return 0;
+   }
+  }
+  if ($rec['TYPE']=='dashboard') {
+   $url=ROOTHTML."3rdparty/freeboard/?layout_id=".$rec['ID'];
+   if ($_GET['theme']) {
+    $url.="&theme=".$_GET['theme'];
+   } elseif ($rec['THEME']) {
+    $url.="&theme=".$rec['THEME'];
+   }
+   if ($rec['BACKGROUND_IMAGE']) {
+    $url.="&background_image=".urlencode($rec['BACKGROUND_IMAGE']);
+   }
+   echo "<head>      
+    <title>Page</title>      
+    <meta http-equiv=\"refresh\" content=\"0;URL='".$url."'\" />    
+  </head><body>Redirecting...</body>";
+   exit;
+   //$this->redirect($url);
   }
   outHash($rec, $out);
  }
@@ -196,6 +249,33 @@ function usual(&$out) {
   SQLExec("DELETE FROM layouts WHERE ID='".$rec['ID']."'");
   @unlink(ROOT.'cms/layouts/'.$rec['ID'].'.html');
  }
+
+ function reorder_items($id, $direction='up') {
+  $element=SQLSelectOne("SELECT * FROM layouts WHERE ID='".(int)$id."'");
+  $all_elements=SQLSelect("SELECT * FROM layouts WHERE 1 ORDER BY PRIORITY DESC, TITLE");
+  $total=count($all_elements);
+  for($i=0;$i<$total;$i++) {
+   if ($all_elements[$i]['ID']==$id && $i>0 && $direction=='up') {
+    $tmp=$all_elements[$i-1];
+    $all_elements[$i-1]=$all_elements[$i];
+    $all_elements[$i]=$tmp;
+    break;
+   }
+   if ($all_elements[$i]['ID']==$id && $i<($total-1) && $direction=='down') {
+    $tmp=$all_elements[$i+1];
+    $all_elements[$i+1]=$all_elements[$i];
+    $all_elements[$i]=$tmp;
+    break;
+   }
+  }
+  $priority=($total)*10;
+  for($i=0;$i<$total;$i++) {
+   $all_elements[$i]['PRIORITY']=$priority;
+   $priority-=10;
+   SQLUpdate('layouts', $all_elements[$i]);
+  }
+ }
+
 /**
 * Install
 *
@@ -214,7 +294,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS layouts');
+   SQLDropTable('layouts');
   parent::uninstall();
  }
 /**
@@ -239,6 +319,9 @@ layouts - Layouts
  layouts: URL char(255) NOT NULL DEFAULT ''
  layouts: REFRESH int(10) NOT NULL DEFAULT '0'
  layouts: DETAILS text
+ layouts: HIDDEN int(3) NOT NULL DEFAULT '0'
+ layouts: BACKGROUND_IMAGE varchar(255) NOT NULL DEFAULT ''
+ layouts: THEME varchar(50) NOT NULL DEFAULT ''
 EOD;
   parent::dbInstall($data);
  }

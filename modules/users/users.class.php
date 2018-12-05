@@ -18,7 +18,7 @@ class users extends module {
 *
 * @access private
 */
-function users() {
+function __construct() {
   $this->name="users";
   $this->title="<#LANG_MODULE_USERS#>";
   $this->module_category="<#LANG_SECTION_SETTINGS#>";
@@ -31,7 +31,7 @@ function users() {
 *
 * @access public
 */
-function saveParams() {
+function saveParams($data = 0) {
  $p=array();
  if (IsSet($this->id)) {
   $p["id"]=$this->id;
@@ -195,7 +195,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS users');
+   SQLDropTable('users');
   parent::uninstall();
  }
 /**
@@ -225,6 +225,8 @@ users - Users
  users: ACTIVE_CONTEXT_ID int(10) NOT NULL DEFAULT '0'
  users: ACTIVE_CONTEXT_EXTERNAL int(3) NOT NULL DEFAULT '0'
  users: ACTIVE_CONTEXT_UPDATED datetime
+ users: ACTIVE_CONTEXT_HISTORY text
+ users: COLOR char(20) NOT NULL DEFAULT ''
 EOD;
   parent::dbInstall($data);
  }

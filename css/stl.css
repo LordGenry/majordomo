@@ -1,11 +1,46 @@
-/*
-* @version 0.2 (auto-set)
-*/
-/*main styles*/
-table,div{
-        font:12px Arial, Helvetica, sans-serif;
-        color:white;
+body {
+ margin:0px; 
+ padding:0px;
+ -webkit-overflow-scrolling: touch;
 }
+
+
+#container {
+/*
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  overflow:hidden;;
+*/
+  //display:block;
+  //overflow:hidden;
+  z-index:0;
+  box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}  
+
+
+#video_background {
+position: absolute;
+bottom: 0px;
+right: 0px;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: -2;
+overflow: hidden;
+opacity: 0.35;
+}
+
+
+.ui-tabs .ui-tabs-panel {
+    padding: 0;
+}
+
 img{
         border:0;
 }
@@ -33,46 +68,8 @@ td{
 p{
         margin:0 0 15px 0;
 }
-/*default styles*/
-a{
-        color:white;
-        text-decoration:underline;
-}
-a:hover{
-        color:#9ECF15;
-}
-h1{
-        font:24px 'Trebuchet MS', Arial, Helvetica, sans-serif;
-    color:white;
-    padding:0;
-    margin:0 0 5px 0;
-    letter-spacing:-1px;
-}
-h2{
-        font:20px 'Trebuchet MS', Arial, Helvetica, sans-serif;
-    color:white;
-    padding:0;
-    margin:0 0 5px 0;
-    letter-spacing:-1px;
-}
-h3{
-        font:18px 'Trebuchet MS', Arial, Helvetica, sans-serif;
-    color:white;
-    padding:0;
-    margin:0 0 5px 0;
-}
-h4{
-        font:bold 16px 'Trebuchet MS', Arial, Helvetica, sans-serif;
-    color:white;
-    padding:0;
-    margin:0 0 5px 0;
-}
-h5{
-        font:bold 14px 'Trebuchet MS', Arial, Helvetica, sans-serif;
-    color:white;
-    padding:0;
-    margin:0 0 5px 0;
-}
+
+
 ul{
   margin:3px 0 15px 5px;
   padding:0 0 0 0;
@@ -206,4 +203,57 @@ li{
 
 .footer a{
         color:#fff;
+}
+
+.tab_page{
+
+}
+
+.tab_table{
+    display:block;
+    opacity:1;
+    width:100%;
+   // min-width:  1000px;
+   // table-layout:fixed;
+    overflow:auto;
+   //background-color:red;
+}
+
+
+.tab_table_cell{
+    display:table-cell;
+    padding:4px;
+    vertical-align: middle;
+    font-size:12px;
+  //font-weight:bold;
+    text-align:center;
+    min-width: 70px;
+    width:150px;
+    height:40px;
+    background-color:rgba(255,255,255,0.7);
+    color:black;
+    /*border-left:1px solid #fff;*/
+    cursor:pointer;
+}
+
+.tab_html{
+    display:block;
+    width:100%;
+   height:100%;
+    overflow:auto;   
+   
+}
+
+img.tab_table_cell{
+ padding:6px;
+}
+.tab_table_cell.active{
+    background-color:rgba(0,0,0,0.5);
+    color:white;
+}
+
+.tab_iframe {
+ margin: 0;
+ padding: 0;
+ border: none;
 }

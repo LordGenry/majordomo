@@ -2,47 +2,41 @@
  @version 0.4 (auto-set)
 #-->
 
-<!-- Table 'scripts' edit -->
-<p align=center>
- <a href="?">&lt;&lt;&lt; <#LANG_BACK#></a>
-</p>
-<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" id="frmEdit">
-<table border=0 align=center cellpadding=3>
+<ul class="breadcrumb">
+<li> 
+<a href="?data_source=<#DATA_SOURCE#>"><#LANG_HOME#></a>
+</li>
+<span class="divider">/</span>
+<li class="active">
+[#if ID=""#]
+<#LANG_NEW_SCRIPT#>
+[#else#]
+<#LANG_EDIT_RECORD#>
+[#endif#]
+</li>
+</ul>
+
+
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" id="frmEdit"  class="form-horizontal">
+
 [#if OK#]
-<tr>
- <td colspan=2 align=center>
-  <font color="green"><#LANG_DATA_SAVED#></font>
- </td>
-</tr>
+    <div class="alert alert-success"><#LANG_DATA_SAVED#></div>
 [#endif OK#]
 [#if ERR#]
-<tr>
- <td colspan=2 align=center>
-  <font color="red"><#LANG_FILLOUT_REQURED#></font>
- </td>
-</tr>
+  <div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
 [#endif ERR#]
-[#if ID=""#]
-<tr>
- <td colspan=2 align=center><b><#LANG_NEW_SCRIPT#></b></td>
-</tr>
-[#endif ID#]
-<!-- TITLE (varchar) -->
-<tr>
- <td align=right>
- [#if ERR_TITLE#]<b><font color="red">[#endif#]
- <#LANG_TITLE#>:
- </td>
- <td>
-  <input type="text" name="title" value="[#TITLE#]" size="50">
- </td>
-</tr>
 
-<tr>
- <td valign="top">&nbsp;</td>
- <td valign="top">
-  <label><input type="checkbox" name="run_periodically" value="1"[#if RUN_PERIODICALLY="1"#] checked[#endif#] onClick='$("#periocidally").toggle();'>
-  <#LANG_RUN_PERIODICALLY#></label>
+
+<div class="form-group ">
+        <label class="col-lg-4 control-label"><#LANG_TITLE#>:<font color="red">*</font><#LANG_HCB#>title<#LANG_HCE#></label>
+        <div class="col-lg-8"><input type="text"  class="form-control [#if ERR_TITLE#]alert-danger[#endif#]"  name="title" value="[#TITLE#]" required="true"></div>
+</div>
+
+<div class="form-group ">
+ <div class="col-lg-8 col-lg-offset-2">
+
+<label><input type="checkbox" name="run_periodically" value="1"[#if RUN_PERIODICALLY="1"#] checked[#endif#] onClick='$("#periocidally").toggle();'>
+  <#LANG_RUN_PERIODICALLY#><#LANG_HCB#>script_runperiodically<#LANG_HCE#></label>
   <div id='periocidally'[#if RUN_PERIODICALLY!="1"#] style="display:none"[#endif#]>
    <#LANG_RUN_TIME#>:
    <select name="run_hours" class="span2">
@@ -59,132 +53,138 @@
    <br>
    <#LANG_RUN_WEEKDAYS#>:
    [#begin DAYS#]
-   <label><input type="checkbox" name="run_days[]" value="[#VALUE#]"[#if SELECTED="1"#] checked[#endif#]> [#TITLE#]</label>
+   <br><label><input type="checkbox" name="run_days[]" value="[#VALUE#]"[#if SELECTED="1"#] checked[#endif#]> [#TITLE#]</label>
    [#end DAYS#]
   </div>
- </td>
-</tr>
+  
+ </div>
+</div>
 
-<tr>
- <td valign="top" align="right"><#LANG_CATEGORY#>:</td>
- <td valign="top">
-  <select name="category_id">
+<div class="form-group ">
+        <label class="col-lg-4 control-label"><#LANG_CATEGORY#><#LANG_HCB#>script_category<#LANG_HCE#></label>
+        <div class="col-lg-8">
+  <select name="category_id" class="form-control">
    <option value="0">
    [#begin CATEGORIES#]
    <option value="[#ID#]" [#if ID="<#CATEGORY_ID#>"#] selected[#endif#]>[#TITLE#]
    [#end CATEGORIES#]
   </select>
- </td>
-</tr>
 
-<tr>
- <td valign="top" align="right"><#LANG_DESCRIPTION#>:</td>
- <td valign="top"><textarea name="description" id="description" rows=3 cols=100 class="field span8">[#DESCRIPTION#]</textarea></td>
-</tr>
+ </div>
+</div>
 
+<div class="form-group ">
+        <label class="col-lg-4 control-label"><#LANG_DESCRIPTION#><#LANG_HCB#>description<#LANG_HCE#></label>
+        <div class="col-lg-8">
+            <div id="description_div_show">
+                <i>[#DESCRIPTION#]</i>
+                <a href="#" onclick="$('#description_div_show').hide();$('#description_div').show();return false;"><#LANG_EDIT#></a>
+            </div>
+   <div id="description_div" style="display:none">
+       <textarea name="description" id="description" rows=3 cols=100 class="form-control">[#DESCRIPTION#]</textarea>
+   </div>
+ </div>
+</div>
 
-<tr>
- <td valign="top" align="right"><#LANG_TYPE#>:</td>
- <td valign="top">
- <label><input type="radio" name="type" class="script_type" value="0"[#if TYPE!="1"#] checked[#endif#]> PHP</label>
- <label><input type="radio" name="type" class="script_type" value="1"[#if TYPE="1"#] checked[#endif#]> Blockly</label>
- [#if ERRORS!=""#]<br><font color='red'>[#ERRORS#]</font><br>[#endif ERRORS#]
- </td>
-</tr>
-
-<script language="javascript">
-  $('.script_type').click (function ()
-  {
-  var thisCheck = $(this);
-   if (thisCheck.val()==1) {
-    $('#xml_row').show();
-    $('#code_row').hide();
-   } else {
-    $('#xml_row').hide();
-    $('#code_row').show();
-   }
-  }
-  );
-
-  function editBlockly() {
-   var blockly=window.open('<#ROOTHTML#>blocky/demos/code/index.html','Blockly','width=100%,height=100%');
-   return false;
-  }
-
-</script>
-
-<tr id="xml_row"[#if TYPE!="1"#] style="display:none"[#endif#]>
- <td valign="top">&nbsp;</td>
- <td valign="top" width="536">
- <a href="#" onClick="return editBlockly();"><#LANG_EDIT#></a>
- <textarea name="xml" id="xml_code" rows="5" cols="60" style="display:none">[#XML#]</textarea>
- <textarea name="blockly_code" id="blockly_code" rows="5" cols="60" style="display:none"></textarea>
- </td>
-</tr>
-
-<!-- CODE (text) -->
-<tr id="code_row"[#if TYPE="1"#] style="display:none"[#endif#]>
- <td valign=top align=right>
-
-[#if TYPE!="1"#]
- <script language="javascript" type="text/javascript" src="<#ROOTHTML#>js/edit_area/edit_area_full.js"></script>
-<script language="javascript" type="text/javascript">
-editAreaLoader.init({
-        id : "code"               // textarea id
-        ,syntax: "php"                  // syntax to be uses for highgliting
-        ,start_highlight: true          // to display with highlight mode on start-up
-});
-</script>
-[#endif TYPE#]
-
- [#if ERR_CODE#]<b><font color="red">[#endif#]
-  <#LANG_CODE#> (PHP)
- :
- </td>
- <td valign=top>
- <textarea name="code" id="code" rows=30 cols=100 class="field span8">[#CODE#]</textarea>
- </td>
-</tr>
-<tr>
- <td valign=top align=right>
- &nbsp;
- </td>
- <td valign=top>
- <input type="checkbox" name="edit_run" id="chkRun" value="1"> <#LANG_EXECUTE_SCRIPT_AFTER_UPDATE#>
- </td>
-</tr>
-<tr>
- <td valign="top">&nbsp;</td>
- <td>
- [#if ID!=""#]
- <input type="submit" name="subm" value="<#LANG_UPDATE#>" class="btn btn-primary">
- [#else ID#]
- <input type="submit" name="subm" value="<#LANG_ADD#>" class="btn">
- [#endif ID#]
- &nbsp;
- <a href="?" class="btn"><#LANG_CANCEL#></a>
- [#if ID!=""#]
- &nbsp;
- <a class="btn" href="?id=<#ID#>&view_mode=clone" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><#LANG_MAKE_COPY#></a>
- [#endif ID#]
- </td>
-</tr>
 [#if ID!=""#]
+<div class="form-group ">
+        <label class="col-lg-4 control-label"><#LANG_CODE#><#LANG_HCB#>code<#LANG_HCE#></label>
+        <div class="col-lg-8">
+
+ [#if ERRORS!=""#]<br><font color='red'>[#ERRORS#]</font><br>[#endif ERRORS#]
+ <!--#
+ <a href="#" onClick="return editBlockly();"><#LANG_EDIT#></a>
+ #-->
+ [#module name="blockly_code" system_name="script<#ID#>" code_field="code" action=""#]
+ <div id="code_area">
+  <textarea name="code" id="code" rows=30 cols=100 class="form-control">[#CODE#]</textarea>
+ </div>
+ </div>
+</div>
+
+[#if AUTO_LINK_AVAILABLE="1"#]
+    <div class="form-group ">
+        <label class="col-lg-4 control-label"><#LANG_AUTO_LINK#><#LANG_HCB#>script_autolink<#LANG_HCE#></label>
+        <div class="col-lg-8">
+            <input type="radio" name="auto_link" value="1"[#if AUTO_LINK="1"#] checked[#endif#]> <#LANG_YES#>
+            [#if LINKED_OBJECT!="" && LINKED_PROPERTY!=""#]
+            (<#LANG_LINKED_OBJECT#>: [#LINKED_OBJECT#].[#LINKED_PROPERTY#])
+            [#endif#]
+            <input type="radio" name="auto_link" value="0"[#if AUTO_LINK!="1"#] checked[#endif#]> <#LANG_NO#>
+
+        </div>
+    </div>
+[#endif#]
+
+
+<div class="form-group ">
+ <div class="col-lg-8 col-lg-offset-2">
+
+<label>
+  <input type="checkbox" name="edit_run" id="chkRun" value="1"> <#LANG_EXECUTE_SCRIPT_AFTER_UPDATE#>
+  
+ </div>
+</div>
+
+[#endif ID#]
+
+
+
+[#endif ID#]
+
+
+<div class="form-group">
+     <div class="col-lg-offset-1 col-lg-11">
+        
+         [#if ID!=""#]
+                 <input class="btn btn-default btn-primary" type="submit" name="subm" value="<#LANG_SUBMIT#>">
+                 [#else ID#]
+                 <input class="btn btn-default btn-primary" type="submit" name="subm" value="<#LANG_ADD#>">
+                 [#endif ID#]
+                 &nbsp;
+                 <a href="?data_source=<#DATA_SOURCE#>" class="btn btn-default"><#LANG_CANCEL#></a>
+
+ [#if ID!=""#]
+ &nbsp;
+ <a href="?id=<#ID#>&view_mode=clone" class="btn btn-default" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><#LANG_MAKE_COPY#></a>
+ <a href="?ids[]=<#ID#>&view_mode=multiple" class="btn btn-default"><#LANG_EXPORT#></a>
+ <a href="?id=<#ID#>&view_mode=delete_scripts" class="btn btn-default" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><#LANG_DELETE#></a>
+ [#endif ID#]
+
+
+    </div>
+</div>
+
+[#if ID!=""#]
+&nbsp;
+<table
 <tr>
- <td valign="top" align="right"><#LANG_RUN_BY_URL#>:</td>
- <td valign="top"><#BASE_URL#>/objects/?script=[#TITLE#]</td>
+ <td valign="top"><#LANG_RUN_BY_URL#>:</td>
+ <td valign="top"><a href="<#ROOTHTML#>objects/?script=[#TITLE#]" target=_blank><#SERVER_URL#><#ROOTHTML#>objects/?script=[#TITLE#]</a></td>
 </tr>
 <tr>
- <td valign="top" align="right"><#LANG_COMMAND_LINE#>:</td>
+ <td valign="top"><#LANG_COMMAND_LINE#>:</td>
  <td valign="top"><#DOC_ROOT#>\obj.bat script:[#TITLE#]</td>
 </tr>
-[#endif#]
 </table>
+&nbsp;
+[#endif#]
+
+
 <input type="hidden" name="id" value="<#ID#>">
 <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
 <input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
 <input type="hidden" name="mode" value="update">
 </form>
+
+ [#if OTHER_SCRIPTS#]
+   <ul>
+   [#begin OTHER_SCRIPTS#]
+   <li>[#if ID!="<#ID#>"#]<a href="?view_mode=edit_scripts&id=[#ID#]">[#else#]<b>[#endif#][#TITLE#]</b></a></li>
+   [#end OTHER_SCRIPTS#]
+   </ul>
+ [#endif OTHER_SCRIPTS#]
+
 
 [#if ID!=""#]
  [#module name="xray" action="context" type="script" keyword="<#TITLE#>" code_id="code"#]

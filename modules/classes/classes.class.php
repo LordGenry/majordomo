@@ -18,7 +18,7 @@ class classes extends module {
 *
 * @access private
 */
-function classes() {
+function __construct() {
   $this->name="classes";
   $this->title="<#LANG_MODULE_OBJECTS#>";
   $this->module_category="<#LANG_SECTION_OBJECTS#>";
@@ -142,7 +142,11 @@ function admin(&$out) {
   }
 
   if ($this->view_mode=='import_classes') {
-   $this->import_classes($out);
+   global $file;
+   global $overwrite;
+   global $only_classes;
+   $this->import_classes($file,$overwrite,$only_classes);
+   $this->redirect("?");
   }
 
   if ($this->view_mode=='edit_classes') {
@@ -185,7 +189,7 @@ function admin(&$out) {
   $objects=SQLSelect("SELECT objects.*, locations.TITLE as LOCATION FROM objects LEFT JOIN locations ON objects.LOCATION_ID=locations.ID WHERE $qry ORDER BY CLASS_ID, TITLE");
   $total=count($objects);
   for($i=0;$i<$total;$i++) {
-   
+   $objects[$i]['KEY_DATA']=getKeyData($objects[$i]['ID']);
   }
   $out['OBJECTS']=$objects;
   $out['CLASSES']=SQLSelect("SELECT * FROM classes ORDER BY TITLE");
@@ -203,9 +207,7 @@ function admin(&$out) {
 *
 * @access public
 */
- function import_classes(&$out) {
-  global $file;
-  global $overwrite;
+ function import_classes($file,$overwrite=0,$only_classes=0) {
 
   $data=LoadFile($file);
   $records=unserialize($data);
@@ -213,10 +215,19 @@ function admin(&$out) {
   if (is_array($records)) {
    $total=count($records);
    for($i=0;$i<$total;$i++) {
-    $old_class=SQLSelectOne("SELECT ID FROM classes WHERE TITLE LIKE '".DBSafe($records[$i]['TITLE'])."'");
+    $old_class=SQLSelectOne("SELECT ID FROM classes WHERE TITLE = '".DBSafe($records[$i]['TITLE'])."'");
+    $total_o=0;
     if ($old_class['ID']) {
+     $old_objects=SQLSelect("SELECT * FROM objects WHERE CLASS_ID='".$old_class['ID']."'");
+     $total_o=count($old_objects);
+     for($io=0;$io<$total_o;$io++) {
+      $old_objects[$io]['CLASS_ID']=0;
+      SQLUpdate('objects', $old_objects[$io]);
+     }
      if ($overwrite) {
-      $this->delete_classes($old_class['ID']);
+      if (!$this->delete_classes($old_class['ID'])) {
+       $records[$i]['ID']=$old_class['ID'];
+      }
      } else {
       $records[$i]['TITLE']=$records[$i]['TITLE'].rand(0, 500);
      }
@@ -227,7 +238,27 @@ function admin(&$out) {
     unset($records[$i]['METHODS']);
     $properties=$records[$i]['PROPERTIES'];
     unset($records[$i]['PROPERTIES']);
-    $records[$i]['ID']=SQLInsert('classes', $records[$i]);
+    if ($records[$i]['PARENT_CLASS']) {
+     $parent_class=SQLSelectOne("SELECT ID FROM classes WHERE TITLE = '".DBSafe($records[$i]['PARENT_CLASS'])."'");
+     if ($parent_class['ID']) {
+      $records[$i]['PARENT_ID']=$parent_class['ID'];
+     }
+     unset($records[$i]['PARENT_CLASS']);
+    }
+
+    if ($records[$i]['ID']) {
+     SQLUpdate('classes', $records[$i]);
+    } else {
+     $records[$i]['ID']=SQLInsert('classes', $records[$i]);
+    }
+
+
+    if ($total_o) {
+     for($io=0;$io<$total_o;$io++) {
+      $old_objects[$io]['CLASS_ID']=$records[$i]['ID'];
+      SQLUpdate('objects', $old_objects[$io]);
+     }
+    }
 
     if (is_array($properties)) {
      $total_p=count($properties);
@@ -245,7 +276,7 @@ function admin(&$out) {
      }
     }
 
-    if (is_array($objects)) {
+    if (is_array($objects) && !$only_classes) {
      $total_o=count($objects);
      for($o=0;$o<$total_o;$o++) {
       $objects[$o]['CLASS_ID']=$records[$i]['ID'];
@@ -254,6 +285,13 @@ function admin(&$out) {
       $properties=$objects[$o]['PROPERTIES'];
       Unset($objects[$o]['PROPERTIES']);
       $objects[$o]['ID']=SQLInsert('objects', $objects[$o]);
+      if ($objects[$o]['LOCATION_ID']) {
+       $location_rec=SQLSelectOne("SELECT ID FROM locations WHERE ID=".$objects[$o]['LOCATION_ID']);
+       if (!$location_rec['ID']) {
+        $objects[$o]['LOCATION_ID']=0;
+        SQLUpdate('objects',$objects[$o]);
+       }
+      }
 
       if (is_array($properties)) {
        $total_p=count($properties);
@@ -277,7 +315,8 @@ function admin(&$out) {
    }
    //print_r($records);
   }
-  $this->redirect("?");
+
+  $this->updateTree_classes();
 
  }
 
@@ -289,6 +328,7 @@ function admin(&$out) {
 * @access public
 */
  function export_classes(&$out, $id) {
+  global $skip_objects;
   $qry=1;
   $qry.=" AND ID='".(int)$id."'";
 
@@ -330,6 +370,7 @@ function admin(&$out) {
     }
 
 
+  if (!$skip_objects) {
 
    $objects=SQLSelect("SELECT * FROM objects WHERE CLASS_ID='".$records[$i]['ID']."'");
    $total_o=count($objects);
@@ -357,40 +398,32 @@ function admin(&$out) {
 
     unset($objects[$o]['ID']);
     unset($objects[$o]['CLASS_ID']);
-    unset($objects[$o]['LOCATION_ID']);
+    //unset($objects[$o]['LOCATION_ID']);
     unset($objects[$o]['SUB_LIST']);
    }
+
+  } else {
+   $objects=array();
+  }
+
+
    $records[$i]['OBJECTS']=$objects;
    unset($records[$i]['ID']);
-   unset($records[$i]['PARENT_ID']);
+   if ($records[$i]['PARENT_ID']) {
+    $parent_class=SQLSelectOne("SELECT * FROM classes WHERE ID=".(int)$records[$i]['PARENT_ID']);
+    $records[$i]['PARENT_CLASS']=$parent_class['TITLE'];
+    unset($records[$i]['PARENT_ID']);
+   }
    unset($records[$i]['PARENT_LIST']);
    unset($records[$i]['SUB_LIST']);
   }
 
   $data=serialize($records);
-
-   $filename=urlencode($records[0]['TITLE']);
-
-   $ext = "txt";   // file extension
-   $mime_type = (PMA_USR_BROWSER_AGENT == 'IE' || PMA_USR_BROWSER_AGENT == 'OPERA')
-   ? 'application/octetstream'
-   : 'application/octet-stream';
-   header('Content-Type: ' . $mime_type);
-   if (PMA_USR_BROWSER_AGENT == 'IE')
-   {
-      header('Content-Disposition: inline; filename="' . $filename . '.' . $ext . '"');
-      header("Content-Transfer-Encoding: binary");
-      header('Expires: 0');
-      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-      header('Pragma: public');
-      print $data;
-   } else {
-      header('Content-Disposition: attachment; filename="' . $filename . '.' . $ext . '"');
-      header("Content-Transfer-Encoding: binary");
-      header('Expires: 0');
-      header('Pragma: no-cache');
-      print $data;
-   }
+  $filename=urlencode($records[0]['TITLE']).'.txt';
+  header('Content-Type: application/octet-stream');
+  header('Content-Disposition: attachment; filename="'.($filename).'"');
+  header('Expires: 0');
+  echo $data;
 
 
   exit;
@@ -513,10 +546,10 @@ function usual(&$out) {
   $rec=SQLSelectOne("SELECT * FROM classes WHERE ID='$id'");
   // some action for related tables
   if ($rec['SUB_LIST']!='' && $rec['SUB_LIST']!=$rec['ID'] && $rec['SUB_LIST']!='') {
-   return;
+   return 0;
   }
-  SQLExec("DELETE FROM properties WHERE CLASS_ID='".$rec['ID']."'");
-  SQLExec("DELETE FROM methods WHERE CLASS_ID='".$rec['ID']."'");
+  SQLExec("DELETE FROM properties WHERE CLASS_ID='".$rec['ID']."' AND OBJECT_ID=0");
+  SQLExec("DELETE FROM methods WHERE CLASS_ID='".$rec['ID']."' AND OBJECT_ID=0");
   include_once(DIR_MODULES.'objects/objects.class.php');
   $o=new objects();
   $objects=SQLSelect("SELECT * FROM objects WHERE CLASS_ID='".$rec['ID']."'");
@@ -525,6 +558,8 @@ function usual(&$out) {
    $o->delete_objects($objects[$i]['ID']);   
   }
   SQLExec("DELETE FROM classes WHERE ID='".$rec['ID']."'");
+  $this->updateTree_classes();
+  return 1;
  }
 /**
 * classes build tree
@@ -538,6 +573,12 @@ function usual(&$out) {
    if ($res[$i]['PARENT_ID']==$parent_id) {
     $res[$i]['LEVEL']=$level;
     $res[$i]['RESULT']=$this->buildTree_classes($res, $res[$i]['ID'], ($level+1));
+    if (!is_array($res[$i]['RESULT'])) {
+     unset($res[$i]['RESULT']);
+    }
+    if (!$res[$i]['RESULT'] && !$res[$i]['OBJECTS']) {
+     $res[$i]['CAN_DELETE']=1;
+    }
     $res2[]=$res[$i];
    }
   }
@@ -597,7 +638,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS classes');
+   SQLDropTable('classes');
   parent::uninstall();
  }
 /**
@@ -619,6 +660,7 @@ classes - Classes
  classes: SUB_LIST text
  classes: PARENT_LIST text
  classes: DESCRIPTION text
+ classes: TEMPLATE text
  classes: INDEX (PARENT_ID)
 
 EOD;

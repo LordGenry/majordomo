@@ -18,7 +18,7 @@ class master extends module {
 *
 * @access private
 */
-function master() {
+function __construct() {
   $this->name="master";
   $this->title="<#LANG_MODULE_MASTER_LOGIN#>";
   $this->module_category="<#LANG_SECTION_SYSTEM#>";
@@ -31,7 +31,7 @@ function master() {
 *
 * @access public
 */
-function saveParams() {
+function saveParams($data = 0) {
  $p=array();
  if (IsSet($this->id)) {
   $p["id"]=$this->id;
@@ -135,6 +135,7 @@ function usual(&$out) {
 */
  function install($parent_name="") {
   parent::install($parent_name);
+  SQLExec("UPDATE project_modules SET HIDDEN=1 WHERE NAME LIKE '".$this->name."'");
  }
 // --------------------------------------------------------------------
 }

@@ -7,39 +7,17 @@
  function report_js_error(msg, url, linenumber) {
   stuff=" URL: "+url+" - "+msg+"; line: "+linenumber;
   tmp = new Image();
-  tmp.src = "write_error.php?error="+stuff;
+  tmp.src = "/write_error.php?error="+stuff;
   return true;
  }
 
 window.onerror=report_js_error
 
-function getCookie(Name) {   
-var search = Name + "="   
-if (document.cookie.length > 0) 
- { // if there are any cookies      
-  offset = document.cookie.indexOf(search)       
-  if (offset != -1) { // if cookie exists          
-   offset += search.length          // set index of beginning of value         
-   end = document.cookie.indexOf(";", offset)          // set index of end of cookie value
-   if (end == -1) end = document.cookie.length         
-   return unescape(document.cookie.substring(offset, end))      
-  }    
- }
-}
 
-
-function setCookie(name, value) { 
- var expire = "0, 01-01-2020 00:00:00 GMT"
- document.cookie = name + "=" + escape(value) + "; expires=" + expire + "; path=/";
-}
 
 var bV=parseInt(navigator.appVersion);
 NS4=(document.layers) ? true : false;
 IE4=((document.all)&&(bV>=4))?true:false;
-
-[#if ("1"=="<#DEBUG_TEMPLATES#>")#]
-[#inc debug_templates.js#]
-[#endif#]
 
 // <AJAX>
 
@@ -48,23 +26,29 @@ var flashing=0;
 
 // -------------------------------------------------------------
 
-function Win2Escape(AStr){
-var Result='';
-for(var i=0;i<AStr.length;i++)
-if(AStr.charAt(i)>='À' && AStr.charAt(i)<='ÿ')
-Result+=Letters[AStr.charCodeAt(i)-0x0410];
-else if(AStr.charAt(i)=='¨')
-Result+=Letters[64];
-else if(AStr.charAt(i)=='¸')
-Result+=Letters[65];
-else if(AStr.charAt(i)=='=')
-Result+='%3D';
-else if(AStr.charAt(i)=='&')
-Result+='%26';
-else
-Result+=AStr.charAt(i);
-return Result;
-}//Win2Escape
+function Win2Escape(AStr)
+{
+   var Result='';
+   var aStrCnt = AStr.length;
+
+   for(var i = 0; i < aStrCnt; i++)
+   {
+      if(AStr.charAt(i) >= 'ï¿½' && AStr.charAt(i) <= 'ï¿½')
+         Result += Letters[AStr.charCodeAt(i) - 0x0410];
+      else if (AStr.charAt(i) == 'ï¿½')
+         Result += Letters[64];
+      else if (AStr.charAt(i) == 'ï¿½')
+         Result += Letters[65];
+      else if (AStr.charAt(i) == '=')
+         Result += '%3D';
+      else if (AStr.charAt(i) == '&')
+         Result += '%26';
+      else
+         Result += AStr.charAt(i);
+   }
+   
+   return Result;
+}
 
 // -------------------------------------------------------------
 
@@ -139,14 +123,18 @@ function startFlashing(block_id) {
 // -------------------------------------------------------------
 
  function getBlockDataForm(block_id, form) {
-  params='';
-  for(i=0;i<form.elements.length;i++) {
-   if (form.elements[i].type!='radio' || form.elements[i].checked) {
-    params+='&'+form.elements[i].name+'='+URLencode(form.elements[i].value);
-   }
-  }
-  //alert(params);
-  url=form.action;
+    params='';
+    var formElementsCnt = form.elements.length;
+    
+    for(i = 0; i < formElementsCnt; i++)
+    {
+       if (form.elements[i].type != 'radio' || form.elements[i].checked)
+       {
+         params += '&' + form.elements[i].name + '=' + URLencode(form.elements[i].value);
+       }
+    }
+  
+    url = form.action;
 
  layer = document.getElementById(block_id);
  old_data=layer.innerHTML;

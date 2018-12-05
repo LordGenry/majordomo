@@ -1,6 +1,6 @@
 <?php
 
-chdir(dirname(__FILE__).'/../');
+chdir(dirname(__FILE__) . '/../');
 
 include_once("./config.php");
 include_once("./lib/loader.php");
@@ -8,83 +8,108 @@ include_once("./lib/threads.php");
 
 set_time_limit(0);
 
-// connecting to database
-$db = new mysql(DB_HOST, '', DB_USER, DB_PASSWORD, DB_NAME); 
-
 include_once("./load_settings.php");
-include_once(DIR_MODULES."control_modules/control_modules.class.php");
+include_once(DIR_MODULES . "control_modules/control_modules.class.php");
 
 $ctl = new control_modules();
 
-$timerClass = SQLSelectOne("SELECT * FROM classes WHERE TITLE LIKE 'timer'");
+setGlobal((str_replace('.php', '', basename(__FILE__))) . 'Run', time(), 1);
+
+echo "Running startup maintenance" . PHP_EOL;
+$run_from_start = 1;
+include("./scripts/startup_maintenance.php");
+$run_from_start = 0;
+
+setGlobal('ThisComputer.started_time', time());
+getObject('ThisComputer')->raiseEvent("StartUp");
+
+$sqlQuery = "SELECT *
+               FROM classes
+              WHERE TITLE = 'timer'";
+
+$timerClass = SQLSelectOne($sqlQuery);
 $o_qry = 1;
- 
-if ($timerClass['SUB_LIST']!='') 
-   $o_qry.=" AND (CLASS_ID IN (".$timerClass['SUB_LIST'].") OR CLASS_ID=".$timerClass['ID'].")";
-else 
-   $o_qry.=" AND 0";
+
+if ($timerClass['SUB_LIST'] != '') {
+    $o_qry .= " AND (CLASS_ID IN (" . $timerClass['SUB_LIST'] . ")";
+    $o_qry .= "  OR CLASS_ID = " . $timerClass['ID'] . ")";
+} else {
+    $o_qry .= " AND 0";
+}
 
 $old_minute = date('i');
-$old_hour   = date('h');
-$old_date   = date('Y-m-d');
+$old_hour = date('h');
+if ($_GET['onetime']) {
+    $old_minute = -1;
+    if (date('i') == '00') {
+        $old_hour = -1;
+    }
+}
+$old_date = date('Y-m-d');
 
-$checked_time=0;
+$checked_time = 0;
+$started_time = time();
 
-while(1) 
-{
-   echo date("H:i:s") . " running " . basename(__FILE__) . "\n";
+echo date("H:i:s") . " running " . basename(__FILE__) . "\n";
 
-   if (time()-$checked_time>5) {
-    $checked_time=time();
-    setGlobal((str_replace('.php', '', basename(__FILE__))).'Run', time());
-   }
+while (1) {
+    if (time() - $checked_time > 5) {
+        $checked_time = time();
+        setGlobal((str_replace('.php', '', basename(__FILE__))) . 'Run', time(), 1);
+        setGlobal('ThisComputer.uptime', time() - getGlobal('ThisComputer.started_time'));
+    }
 
-   $m  = date('i');
-   $h  = date('h');
-   $dt = date('Y-m-d');
-  
-   if ($m!=$old_minute) 
-   {
-      echo "new minute\n";
-      $objects = SQLSelect("SELECT ID, TITLE FROM objects WHERE $o_qry");
-      $total   = count($objects);
-   
-      for($i=0;$i<$total;$i++) 
-      {
-         echo $objects[$i]['TITLE'] . "->onNewMinute\n";
-         getObject($objects[$i]['TITLE'])->raiseEvent("onNewMinute");
-         getObject($objects[$i]['TITLE'])->setProperty("time", date('Y-m-d H:i:s'));
-      }
-   
-      $old_minute=$m;
-   }
-  
-   if ($h!=$old_hour) 
-   {
-      echo "new hour\n";
-      $old_hour = $h;
-      $objects  = SQLSelect("SELECT ID, TITLE FROM objects WHERE $o_qry");
-      $total    = count($objects);
-      
-      for($i = 0; $i < $total; $i++)
-         getObject($objects[$i]['TITLE'])->raiseEvent("onNewHour");
-   }
-   
-   if ($dt != $old_date) 
-   {
-      echo "new day\n";
-      $old_date = $dt;
-   }
+    $m = date('i');
+    $h = date('h');
+    $dt = date('Y-m-d');
 
-   if (file_exists('./reboot') || $_GET['onetime']) 
-   {
-      $db->Disconnect();
-      exit;
-   }
+    #NewMinute
+    if ($m != $old_minute) {
+        $sqlQuery = "SELECT ID, TITLE
+                     FROM objects
+                    WHERE $o_qry";
 
-   sleep(1);
+        $objects = SQLSelect($sqlQuery);
+        $total = count($objects);
+
+        for ($i = 0; $i < $total; $i++) {
+            echo date('H:i:s') . ' ' . $objects[$i]['TITLE'] . "->onNewMinute\n";
+            getObject($objects[$i]['TITLE'])->setProperty("time", date('Y-m-d H:i:s'));
+            getObject($objects[$i]['TITLE'])->raiseEvent("onNewMinute");
+        }
+
+        $old_minute = $m;
+    }
+
+    #NewHour
+    if ($h != $old_hour) {
+
+        for ($i = 0; $i < $total; $i++) {
+            echo date('H:i:s') . ' ' . $objects[$i]['TITLE'] . "->onNewHour\n";
+            getObject($objects[$i]['TITLE'])->raiseEvent("onNewHour");
+        }
+
+        processSubscriptionsSafe('HOURLY');
+        $old_hour = $h;
+    }
+
+    #NewDay
+    if ($dt != $old_date) {
+
+        for ($i = 0; $i < $total; $i++) {
+            echo date('H:i:s') . ' ' . $objects[$i]['TITLE'] . "->onNewDay\n";
+            getObject($objects[$i]['TITLE'])->raiseEvent("onNewDay");
+        }
+
+        processSubscriptionsSafe('DAILY');
+        $old_date = $dt;
+    }
+
+    if (file_exists('./reboot') || isset($_GET['onetime'])) {
+        exit;
+    }
+
+    sleep(1);
 }
 
 DebMes("Unexpected close of cycle: " . basename(__FILE__));
-
-?>

@@ -22,7 +22,7 @@ class pinghosts extends module {
 function pinghosts() {
   $this->name="pinghosts";
   $this->title="<#LANG_MODULE_PINGHOSTS#>";
-  $this->module_category="<#LANG_SECTION_OBJECTS#>";
+  $this->module_category="<#LANG_SECTION_DEVICES#>";
   $this->checkInstalled();
 }
 /**
@@ -215,8 +215,8 @@ function usual(&$out) {
     $online=ping(processTitle($host['HOSTNAME']));
    } else {
     //web host
-    $online=file_get_contents(processTitle($host['HOSTNAME']));
-    SaveFile("./cached/host_".$host['ID'].'.html', $online);
+    $online=getURL(processTitle($host['HOSTNAME']), 0);
+    SaveFile("./cms/cached/host_".$host['ID'].'.html', $online);
     if ($host['SEARCH_WORD']!='' && !is_integer(strpos($online, $host['SEARCH_WORD']))) {
      $online=0;
     }
@@ -259,10 +259,6 @@ function usual(&$out) {
 
    $host['CHECK_LATEST']=date('Y-m-d H:i:s');
 
-   if ($host['LINKED_OBJECT']!='' && $host['LINKED_PROPERTY']!='') {
-    setGlobal($host['LINKED_OBJECT'].'.'.$host['LINKED_PROPERTY'], $host['STATUS']);
-   }
-
    if ($host['STATUS']=='1') {
     $host['CHECK_NEXT']=date('Y-m-d H:i:s', time()+$online_interval);
    } else {
@@ -270,11 +266,21 @@ function usual(&$out) {
    }
 
    if ($old_status!=$host['STATUS']) {
+    if ($host['LINKED_OBJECT']!='' && $host['LINKED_PROPERTY']!='') {
+     setGlobal($host['LINKED_OBJECT'].'.'.$host['LINKED_PROPERTY'], $host['STATUS']);
+    }
     if ($host['STATUS']==2) {
      $host['LOG']=date('Y-m-d H:i:s').' Host is offline'."\n".$host['LOG'];
     } elseif ($host['STATUS']==1) {
      $host['LOG']=date('Y-m-d H:i:s').' Host is online'."\n".$host['LOG'];
     }
+   }
+
+   $tmp=explode("\n", $host['LOG']);
+   $total_log=count($tmp);
+   if ($total_log > 30) {
+    $tmp=array_slice($tmp, 0, 30);
+    $host['LOG']=implode("\n", $tmp);
    }
 
    SQLUpdate('pinghosts', $host);
@@ -301,7 +307,7 @@ function usual(&$out) {
 
     if ($run_script_id) {
      //run script
-     runScript($run_script_id);
+     runScriptSafe($run_script_id);
     } elseif ($run_code) {
      //run code
 
@@ -310,9 +316,11 @@ function usual(&$out) {
                    $success=eval($code);
                    if ($success===false) {
                     DebMes("Error in hosts online code: ".$code);
+                    registerError('ping_hosts', "Error in hosts online code: ".$code);
                    }
                   } catch(Exception $e){
                    DebMes('Error: exception '.get_class($e).', '.$e->getMessage().'.');
+                   registerError('ping_hosts', get_class($e).', '.$e->getMessage());
                   }
 
     }
@@ -343,7 +351,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS pinghosts');
+   SQLDropTable('pinghosts');
   parent::uninstall();
  }
 /**
